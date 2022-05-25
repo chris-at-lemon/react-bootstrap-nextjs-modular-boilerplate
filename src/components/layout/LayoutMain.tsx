@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import { Container, Row, Col } from 'reactstrap';
 
-export const LayoutMain = ({ children }: any) => {
+const LayoutMain = ({ children }: any) => {
 
 	return (
 		<>
@@ -45,3 +45,5 @@ export const LayoutMain = ({ children }: any) => {
 		</>
 	)
 }
+
+export default LayoutMain
