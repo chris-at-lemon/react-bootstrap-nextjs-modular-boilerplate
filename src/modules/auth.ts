@@ -24,6 +24,8 @@ const localStorageKeyName = 'auth';
 
 export const loginUser = async (data: LoginParams) => {
   const response = await sendLoginRequest(data);
+  console.log(response);
+  
   if (response.statusCode === 200 && response?.response?.jwt) {
     setLoginData(response.response.jwt);
   } else {

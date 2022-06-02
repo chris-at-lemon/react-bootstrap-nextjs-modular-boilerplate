@@ -1,9 +1,11 @@
 import type { NextPage } from 'next'
-import { loginUser } from '../modules/auth'
+
+import { homeController } from '../controllers/pages/homeController'
 
 import styles from '../styles/pages/home/home.module.scss'
 
 const Home: NextPage = () => {
+  const { fn } = homeController();
 
   return (
     <>
@@ -11,7 +13,7 @@ const Home: NextPage = () => {
           <h1>React Bootstrap NextJS Modular SCSS Boilerplate</h1>
           <h2>Lightning fast, highly optimised pages Google will love</h2>
           <div>
-        <button onClick={() => loginUser({username: 'userChris', password: 'test'})}>Login</button>
+        <button onClick={fn.handleLogin}>Login</button>
       </div>
       </div>
     </>
