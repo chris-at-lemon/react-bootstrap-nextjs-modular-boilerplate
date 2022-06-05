@@ -44,7 +44,7 @@ export const checkUser = async () => {
   const validateResponse = await validateToken(loginData.rawJwt);
   if (validateResponse.statusCode == 200) return true;
 
-  removeLoginData();
+  //removeLoginData();
 };
 
 export const getUserLoginData = (): any => {
@@ -72,6 +72,7 @@ export const getUserLoginData = (): any => {
     };
   }
 
+  console.log(loginData);
   return loginData;
 };
 
@@ -97,10 +98,6 @@ const setUserCookie = () => {
 const sendLoginRequest = async (data: LoginParams) => {
   let url = "../api/users/authenticate";
 
-  // if (USERS_SERVICES_ENDPOINT === 'local') {
-  //   url = `http://localhost:4000/${STAGE}/authenticator/create-token`;
-  // }
-
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -111,11 +108,8 @@ const sendLoginRequest = async (data: LoginParams) => {
 };
 
 const validateToken = async (userJwt: string) => {
-  let url = `${STAGE_URL}/user-v1/authenticator/is-authorised`;
-  if (USERS_SERVICES_ENDPOINT === 'local') {
-    url = `http://localhost:4000/${STAGE}/authenticator/is-authorised`;
-  }
-
+  let url = '../api/users/validate';
+  
   const config = {
     headers: {
       'Content-Type': 'application/json',

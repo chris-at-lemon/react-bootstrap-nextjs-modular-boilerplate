@@ -4,9 +4,6 @@ import { setHttpAgentOptions } from 'next/dist/server/config';
 
 const { serverRuntimeConfig } = getConfig();
 
-console.log('authenticating');
-
-
 // users in JSON file for simplicity, store in a db for production applications
 import users from '../../../data/users.json';
 
