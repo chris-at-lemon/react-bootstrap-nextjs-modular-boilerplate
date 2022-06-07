@@ -24,10 +24,11 @@ const localStorageKeyName = 'auth';
 
 export const loginUser = async (data: LoginParams) => {
   const response = await sendLoginRequest(data);
-  console.log(response);
+  // console.log(response);
   
   if (response.statusCode === 200 && response?.response?.jwt) {
     setLoginData(response.response.jwt);
+    return response
   } else {
     return (response?.response?.message || 'Unknown Error');
   }
@@ -44,7 +45,8 @@ export const checkUser = async () => {
   const validateResponse = await validateToken(loginData.rawJwt);
   if (validateResponse.statusCode == 200) return true;
 
-  //removeLoginData();
+  removeLoginData();
+  return false
 };
 
 export const getUserLoginData = (): any => {
@@ -72,7 +74,7 @@ export const getUserLoginData = (): any => {
     };
   }
 
-  console.log(loginData);
+  // console.log(loginData);
   return loginData;
 };
 
@@ -86,14 +88,16 @@ export const removeLoginData = () => {
 export const setLoginData = (jwt: any) => {
   if (typeof window !== 'undefined') {
     localStorage.setItem(localStorageKeyName, jwt);
-    setUserCookie();
+    // setUserCookie();
   }
 };
 
-const setUserCookie = () => {
-  const currentUser = getUserLoginData();
-  Cookies.set('currentUser', JSON.stringify(currentUser));
-};
+// Cookies haved been replaced by just using local storage
+
+// const setUserCookie = () => {
+//   const currentUser = getUserLoginData();
+//   Cookies.set('currentUser', JSON.stringify(currentUser));
+// };
 
 const sendLoginRequest = async (data: LoginParams) => {
   let url = "../api/users/authenticate";

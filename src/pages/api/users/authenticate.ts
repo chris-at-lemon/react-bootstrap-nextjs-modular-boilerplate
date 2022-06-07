@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import getConfig from 'next/config';
-import { setHttpAgentOptions } from 'next/dist/server/config';
+import { useMaybeDeferContent } from 'next/dist/server/render';
 
 const { serverRuntimeConfig } = getConfig();
 
@@ -10,7 +10,7 @@ import users from '../../../data/users.json';
 function authenticate(req: any, res: any) {
 
 	const { username, password } = req.body;
-	const user = users.find((u: { username: string; password: string; }) => u.username === username && u.password === password);
+	const user = users.find((u: { userName: string; password: string; }) => u.userName === username && u.password === password);
 
 	if (!user) {
 		return res.status(401).json({
@@ -19,9 +19,9 @@ function authenticate(req: any, res: any) {
 	}	else {
 		const token = jwt.sign(
 			{
-				username: 'userChris',
-				firstName: 'Chris',
-				lastName: 'Test',
+				username: user.userName,
+				firstName: user.firstName,
+				lastName: user.lastName,
 			},
 			serverRuntimeConfig.secret,
 			{ expiresIn: '1h' });

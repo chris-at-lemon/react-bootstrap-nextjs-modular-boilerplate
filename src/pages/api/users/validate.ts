@@ -9,7 +9,7 @@ import users from '../../../data/users.json';
 
 function validate(req: any, res: any) {
 
-    console.log({req: req.headers.authorization});
+    console.log({req: req.headers.Authorization});
     
 
 	// const { username, password } = req.body;

@@ -14,7 +14,13 @@
 // Buttons
 @import '../../core/bootstrap/buttons';
 
-// UYtilities
+// Alerts
+@import '../../core/bootstrap/alert';
+
+// Utilities
+.mb-0 {
+    margin-bottom: 0;
+}
 .mb-1rem {
     margin-bottom: 1rem;
 }
@@ -26,4 +32,7 @@
 }
 .w-100 {
     width: 100%;
+}
+.text-center {
+    text-align: center;
 }

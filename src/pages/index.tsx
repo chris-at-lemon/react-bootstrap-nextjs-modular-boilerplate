@@ -2,11 +2,11 @@ import type { NextPage } from 'next'
 
 import LoginCard from '../components/login/loginCard'
 
-import { homeController } from '../controllers/pages/homeController'
+import { HomeController } from '../controllers/pages/homeController'
 import styles from '../styles/pages/home/home.module.scss'
 
 const Home: NextPage = () => {
-  const { fn, showLoginCard } = homeController();
+  const { fn, showLoginCard } = HomeController();
 
   return (
     <>

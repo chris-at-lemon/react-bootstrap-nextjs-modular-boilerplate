@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { loginUser, getUserLoginData, checkUser, signOut } from '../../modules/auth'
 
-export const homeController = () => {
+export const HomeController = () => {
     const [showLoginCard, setShowLoginCard] = useState<boolean>(false)
     const toggleLoginCard = () => {
         setShowLoginCard(!showLoginCard)
     }
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         loginUser({username: 'userChris', password: 'test'})
     }
 
