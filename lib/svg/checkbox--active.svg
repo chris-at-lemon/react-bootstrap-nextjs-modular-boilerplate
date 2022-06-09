@@ -1,0 +1,10 @@
+<svg id="Checkbox_-_Selected" data-name="Checkbox - Selected" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30">
+  <g id="Rectangle_576" data-name="Rectangle 576" fill="#a4a4a4" stroke="#a4a4a4" stroke-width="1">
+    <rect width="30" height="30" rx="4" stroke="none"/>
+    <rect x="0.5" y="0.5" width="29" height="29" rx="3.5" fill="none"/>
+  </g>
+  <g id="Group_77" data-name="Group 77" transform="translate(-919 -340)">
+    <rect id="Rectangle_460" data-name="Rectangle 460" width="16" height="16" transform="translate(926 347)" fill="none"/>
+    <path id="Checkbox" d="M6.345,11.034,0,4.69,1.287,3.4,6.345,8.368,14.713,0,16,1.287Z" transform="translate(926 349)" fill="#fff"/>
+  </g>
+</svg>

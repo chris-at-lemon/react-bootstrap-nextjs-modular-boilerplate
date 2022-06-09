@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const withImages = require('next-images');
+
 
 // const withBundleAnalyzer = require('@next/bundle-analyzer')({
 //   enabled: process.env.ANALYZE === 'true',
@@ -14,7 +16,7 @@
 
 // module.exports = withBundleAnalyzer({nextConfig})
 
-module.exports = {
+module.exports = withImages({
   reactStrictMode: true,
   i18n: {
     locales: ['en-GB'],
@@ -28,4 +30,4 @@ module.exports = {
           ? 'http://localhost:3000/api' // development api
           : 'http://localhost:3000/api' // production api
   }
-}
+})

@@ -1,0 +1,27 @@
+.section__Title {
+  text-align: center;
+}
+
+.section__Title .line-icon--title {
+  width: 4rem;
+  height: 4rem;
+}
+
+.section__Title h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #262627;
+  line-height: 1.1em;
+  -webkit-letter-spacing: -0.05em;
+  -moz-letter-spacing: -0.05em;
+  -ms-letter-spacing: -0.05em;
+  letter-spacing: -0.05em;
+  margin: 1rem 0 1rem 0;
+}
+
+.section__Title h2 {
+  font-size: 1.4rem;
+  line-height: 1.6rem;
+  color: rgb(86, 86, 86);
+  margin: 0px;
+}

@@ -35,13 +35,9 @@ const LayoutMain = ({ children }: any) => {
 				<meta name="application-name" content="lemon-digital.com" key="appName" />
 			</Head>
 
-			<Container>
-				<Row>
-					<Col>
-						{children}
-					</Col>
-				</Row>
-			</Container>
+			<div>
+				{children}
+			</div>
 		</>
 	)
 }
