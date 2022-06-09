@@ -17,15 +17,6 @@ export const LoginCardController = () => {
 		setPassword(data);
 	}
 
-	//  const handleLogin = async () => {
-	//  	const login = await loginUser({ username: userName, password: password });
-	//  	if (login.isValid) {
-	//  		router.push('/profile')
-	//  	} else {
-	//  		setErrorMsg(login)
-	//  	}
-	//  }
-
 	const handleLogin =  async (e: any) => {
 		e.preventDefault();
 		const login =  await loginUser({ username: userName, password: password });

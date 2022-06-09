@@ -10,7 +10,10 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <div className={`${styles['landingHero']}`}>
+    <div className='container'>
+      <div className='row'>
+        <div className='col'>
+        <div className={`${styles['landingHero']}`}>
         <h1>React Bootstrap NextJS Modular SCSS Boilerplate</h1>
         <h2>Lightning fast, highly optimised pages Google will love</h2>
         <div>
@@ -26,6 +29,9 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
+        </div>
+      </div>
+    </div>
     </>
   )
 }

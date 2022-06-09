@@ -7,38 +7,34 @@ import { IUser } from '../../interfaces/iUser'
 export const ProfileController = () => {
 	const router = useRouter()
 
+	const loginStatus = getUserLoginData();
+
+	// Push to homepage if not logged in, make sure only executes on client side 
+	if (typeof window !== 'undefined') {
+		if (!loginStatus.isloggedIn) {
+			router.push('/')
+		}
+	}
+
+	// set user Data state using data returned above
 	const [userData, setUserData] = useState<IUser>();
 
+	// Return user Data object to use in userData state. Needs useEffect to prevent infinite loop 
 	useEffect(() => {
-		console.log('doing stuff')
-		async function userCheck() {
-			const loginStatus = await getUserLoginData();
-			
-			
-			if (loginStatus.isloggedIn) {
-				setUserData(
-					{
-						loggedIn: true,
-						firstName: loginStatus.decodedJwt.firstName,
-						lastName: loginStatus.decodedJwt.lastName
-					}
-				)
-			}
-	
-			if (typeof window !== 'undefined') {
-				if (!loginStatus.isloggedIn) {
-					router.push('/')
-				}
-			}
+		if (loginStatus.isloggedIn) {
+			setUserData({
+				loggedIn: true,
+				firstName: loginStatus.decodedJwt.firstName,
+				lastName: loginStatus.decodedJwt.lastName
+			}) 
+		} else {
+			setUserData({
+				loggedIn: false,
+				firstName: '',
+				lastName: ''
+			}) 
 		}
-
-		userCheck();
-	}, [])
-
-
-	// Always check if user is logged in
-	// userCheck();
-	// console.log(userCheck())
+	}, []);
 
 	const logOut = () => {
 		signOut;
