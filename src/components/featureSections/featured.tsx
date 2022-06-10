@@ -15,7 +15,7 @@ export const FeatureExtended = (props: IFeatureElement) => (
         <p className={`${styles['feature__text']}`}>{props.body}</p>
       </div>
       <div className="feature__cta">
-        <a href={props.link} className={`${styles['btn']} b${styles['tn-primary']} ${styles['btn--feature']}`}>{props.ftrBtnTxt}</a>
+        <a href={props.link} className={`${styles['btn']} ${styles['btn-primary']} ${styles['btn--feature']}`}>{props.ftrBtnTxt}</a>
       </div>
     </div>
   </div>

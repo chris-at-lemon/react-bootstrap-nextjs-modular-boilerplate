@@ -22,7 +22,14 @@
 .section--Separator, .section--Features {
   padding-top: 6rem;
 }
-
+.section--gray {
+  margin-top: 96px;
+  background: rgb(239, 241, 242);
+}
+.section--gray + .section--gray {
+  margin-top: 0px;
+  padding-bottom: 96px;
+}
 
 
 // Utilities
