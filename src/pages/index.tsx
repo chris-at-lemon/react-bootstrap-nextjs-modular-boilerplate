@@ -1,7 +1,5 @@
 import type { NextPage } from 'next'
 
-import LoginCard from '../components/login/loginCard'
-
 import { HomeController } from '../controllers/pages/homeController'
 import styles from '../styles/pages/home/home.module.scss'
 
