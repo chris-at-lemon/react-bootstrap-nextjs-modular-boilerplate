@@ -1,35 +1,37 @@
 import type { NextPage } from 'next'
+import { useState } from 'react';
 
 import { HomeController } from '../controllers/pages/homeController'
 import styles from '../styles/pages/home/home.module.scss'
+
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+
+// const GooglePlacesAutocomplete = dynamic(() => import('react-google-places-autocomplete'), {
+//   suspense: true,
+// })
 
 import axios from 'axios'
 
 const Home: NextPage = () => {
   const { fn } = HomeController();
 
-  // const options = {
-  //   params: {
-  //     q: 'London,uk',
-  //     lat: '0',
-  //     lon: '0',
-  //     callback: 'test',
-  //     id: '2172797',
-  //     lang: 'null',
-  //     units: 'imperial',
-  //     mode: 'xml'
-  //   },
-  //   headers: {
-  //     'X-RapidAPI-Key': 'f7c2fcdb11msh1942c6e2a678652p1915e5jsnb460a722d3da',
-  //     'X-RapidAPI-Host': 'community-open-weather-map.p.rapidapi.com'
-  //   }
-  // };
-  
-  // axios.get('https://community-open-weather-map.p.rapidapi.com/weather', options).then(function (response) {
-  //   console.log(response.data);
-  // }).catch(function (error) {
-  //   console.error(error);
-  // });
+  const customStyles = {
+      input: (provided) => ({
+        ...provided,
+        color: 'red',
+      }),
+      option: (provided) => ({
+        ...provided,
+        color: 'blue',
+      }),
+      singleValue: (provided) => ({
+        ...provided,
+        color: 'blue',
+      }),
+  }
+
+  const [searchValue, setSearchValue] = useState(null);
+  console.log(searchValue)
 
   return (
     <>
@@ -41,7 +43,18 @@ const Home: NextPage = () => {
         <h2>Lightning fast, highly optimised pages Google will love</h2>
         <button onClick={fn.getWeather}>get weather</button>
         <button onClick={fn.getCity}>get city</button>
-       
+        <button onClick={fn.getCoordinates}>get coord</button>
+        <div  className={`${styles['searchContainer']}`}>
+          <GooglePlacesAutocomplete
+            apiKey='AIzaSyASj51Y1vhC74Cr-wPqKSHLg8DW8HMTITI'
+            selectProps={{
+              styles: customStyles,
+              value: searchValue,
+              onChange: setSearchValue,
+              defaultInputValue: searchValue
+            }}
+            />
+        </div>
       </div>
         </div>
       </div>
