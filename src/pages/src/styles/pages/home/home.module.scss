@@ -1,0 +1,20 @@
+// Core
+@import "../../core/bootstrap/functions";
+@import "../../core/brand/variables";
+
+// Mixins
+@import "../../core/bootstrap/mixins";
+
+@import '../../core/bootstrap/buttons';
+
+.landingHero {
+  height: 100vh;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.loginCardWrapper {
+  margin-top: 2rem;
+}

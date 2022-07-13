@@ -1,0 +1,38 @@
+// Core
+@import "../../core/bootstrap/functions";
+@import "../../core/brand/variables";
+
+// Mixins
+@import "../../core/bootstrap/mixins";
+
+// Card
+@import '../../core/bootstrap/card';
+
+// Forms
+@import '../../core/bootstrap/forms';
+
+// Buttons
+@import '../../core/bootstrap/buttons';
+
+// Alerts
+@import '../../core/bootstrap/alert';
+
+// Utilities
+.mb-0 {
+    margin-bottom: 0;
+}
+.mb-1rem {
+    margin-bottom: 1rem;
+}
+.mt-1rem {
+    margin-top: 1rem;
+}
+.d-block {
+    display: block;
+}
+.w-100 {
+    width: 100%;
+}
+.text-center {
+    text-align: center;
+}
