@@ -30,7 +30,7 @@ const Home: NextPage = () => {
       }),
   }
 
-  const [searchValue, setSearchValue] = useState(null);
+  const [searchValue, setSearchValue] = useState();
   console.log(searchValue)
 
   return (

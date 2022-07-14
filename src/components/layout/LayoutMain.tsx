@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
 
+
 import { Container, Row, Col } from 'reactstrap';
 
 const LayoutMain = ({ children }: any) => {
