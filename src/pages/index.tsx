@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       <div className='row'>
         <div className='col'>
         <div className={`${styles['landingHero']}`}>
-        <h1>Get weather</h1>
+        <h1>Get weather now</h1>
         {/* <button onClick={fn.getWeather}>get weather</button>
         <button onClick={fn.getCity}>get city</button>
         <button onClick={fn.getCoordinates}>get coord</button> */}
