@@ -4,7 +4,7 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 
-export const searchInputController = () => {
+export const searchInputController = (setCoord: any) => {
   const {
     ready,
     value,
@@ -40,6 +40,7 @@ export const searchInputController = () => {
       getGeocode({ address: description }).then((results) => {
         const { lat, lng } = getLatLng(results[0]);
         console.log("📍 Coordinates: ", { lat, lng });
+        setCoord(lat, lng)
       });
     };
   

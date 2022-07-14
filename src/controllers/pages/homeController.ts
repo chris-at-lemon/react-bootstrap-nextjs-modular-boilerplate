@@ -1,41 +1,75 @@
-import { useState } from 'react'
-import { httpGet } from '../../modules/http'
+import { useEffect, useState } from 'react'
+import { getCity } from '../../modules/location';
 
 export const HomeController = () => {
-    const config = {
-        params: {
-            q: 'London',
-            lat: '',
-            lon: '0',
-            id: '2172797',
-            lang: 'null',
-            units: 'metric',
-          },
-          headers: {
-            'X-RapidAPI-Key': 'f7c2fcdb11msh1942c6e2a678652p1915e5jsnb460a722d3da',
-            'X-RapidAPI-Host': 'community-open-weather-map.p.rapidapi.com'
+    // Source of truth: Coordinates decide location
+    const [currentCoord, setCurrentCoord] = useState({
+        lat: 37.3911379,
+        lon: -5.9938443
+    });
+    //console.log(currentCoord)
+    
+    // City name always a result of coordinates
+    const [currentCity, setCurrentCity] = useState({
+        city: 'Berlin',
+        countryCode: 'de'
+    })
+
+    // Run once when app loads to set coordinates and city if geoLocation available
+    useEffect(() => {
+        const getCurrentPosition = () => navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        getCurrentPosition();
+        
+        // set new coordinates
+        function onSuccess(position: any) {
+           const {
+              latitude,
+              longitude
+          } = position.coords;
+          
+          // set new city
+          let newCoordinates = { ...currentCoord };
+          newCoordinates = {
+            lat: latitude,
+            lon: longitude
           }
-    }
-    
-    const getWeather = async () => {
-        const weatherData = await httpGet('https://community-open-weather-map.p.rapidapi.com/weather', config)
+
+          setCurrentCoord(newCoordinates);
+          fetchCity(newCoordinates.lat, newCoordinates.lon);
+      }
+      function onError() {
+        console.log('not allowed');
+      }
+    }, [])
+
+    // set new city
+    const fetchCity = async (lat: number, lon: number) => {
+        const newCityData: any = await getCity(lat, lon);
+        let newCity = { ...currentCity }
+
+        if (newCityData.status === 200) {
+            //console.log(newCityData.data);
+            newCity = {
+                city: newCityData.data[0].name,
+                countryCode: newCityData.data[0].country.toLowerCase()
+            }
+            setCurrentCity(newCity)
+        } else {
+            console.log('error');
+        }
     }
 
-    const getCity = async () => {
-        const cityName = await httpGet('https://maps.googleapis.com/maps/api/geocode/json?latlng=51.5085,-0.1257&key=AIzaSyASj51Y1vhC74Cr-wPqKSHLg8DW8HMTITI')
+    // set new city and coordinates from dropdown
+    const setNewCoord = (lat: number, lon: number) => {
+        setCurrentCoord({lat: lat, lon: lon})
+        fetchCity(lat, lon)
     }
-    
-    const getCoordinates = async () => {
-        const coord = await httpGet('http://api.openweathermap.org/geo/1.0/direct?q=London&limit=1&appid=47f409a9010a803408dc5f5242fd4b2d')
-    }
-
-
 
     return {
+        currentCoord,
+        currentCity,
         fn: {
-            getWeather,
-            getCity,
-            getCoordinates
+            setNewCoord
         }
     }
 }

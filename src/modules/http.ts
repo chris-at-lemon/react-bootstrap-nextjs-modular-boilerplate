@@ -2,34 +2,29 @@ import * as axios from 'axios';
 
 export const httpGet = async (url: string, header: any = {}) => {
   try {
-    // if (header) {
     const response = await axios.default.get(url, header);
-    console.log(response.data);
-    
+    //console.log(response.data);
 
-    // const responseData = {
-    //   isValid: true,
-    //   statusCode: response.status,
-    //   message: response.statusText,
-    //   response: response.data,
-    // };
+    const responseData = {
+      isValid: true,
+      statusCode: response.status,
+      message: response.statusText,
+      response: response.data,
+    };
 
     return response;
-    // } else {
-    //   const response = await axios.default.get(url);
-    //   const responseData = {
-    //     isValid: true,
-    //     statusCode: response.status,
-    //     message: response.statusText,
-    //     response: response.data,
-    //   };
-
-    //   return responseData;
-    // }
   } catch (error: any) {
     console.error(error);
-
-    return error;
+    const message = error?.response?.data?.hasOwnProperty('message')
+      ? error.response.data.message
+      : error.response?.statusText;
+    const responseData = {
+      isValid: false,
+      statusCode: error.response?.status,
+      message: message,
+      response: error.response?.data,
+    };
+    return responseData;
   }
 };
 
@@ -127,14 +122,4 @@ export const httpDelete = async (url: string, header: any) => {
     };
     return responseData;
   }
-};
-
-export const propsToUrl = (url: string, searchProps: any) => {
-  let thisUrl = url;
-  for (const key in searchProps) {
-    if (searchProps[key] !== 'undefined' && typeof searchProps[key] !== 'undefined') {
-      thisUrl += `${key}=${searchProps[key]}&`;
-    }
-  }
-  return thisUrl;
 };

@@ -6,8 +6,8 @@ import useOnclickOutside from "react-cool-onclickoutside";
 
 import { searchInputController } from "./searchInputController";
 
-const PlacesAutocomplete = () => {
-  const { ready, value, status, data, fn } = searchInputController();
+const PlacesAutocomplete = ({setCoord}: any) => {
+  const { ready, value, status, data, fn } = searchInputController(setCoord);
 
   return (
     <div ref={fn.ref}>
