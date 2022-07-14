@@ -29,6 +29,8 @@ export const HomeController = () => {
         const coord = await httpGet('http://api.openweathermap.org/geo/1.0/direct?q=London&limit=1&appid=47f409a9010a803408dc5f5242fd4b2d')
     }
 
+
+
     return {
         fn: {
             getWeather,
