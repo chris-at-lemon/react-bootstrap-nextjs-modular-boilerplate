@@ -16,7 +16,6 @@ const PlacesAutocomplete = ({setCoord}: any) => {
         className={`${styles['form-control']}`}
         value={value}
         onChange={fn.handleInput}
-        disabled={!ready}
         placeholder="Enter a city"
         aria-label="Search city"
       />
