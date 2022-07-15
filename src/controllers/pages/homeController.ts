@@ -1,3 +1,4 @@
+import { type } from 'os';
 import { useEffect, useState } from 'react'
 import { getCity, getWeather } from '../../modules/location';
 
@@ -16,14 +17,17 @@ export const HomeController = () => {
         countryCode: 'de'
     })
 
+    type WeatherObject = {
+        temperature?: number,
+        name?: string,
+        descr?: string,
+        feels_like?: number,
+        icon?: string
+      };
+
     // Weather always a result of coordinates
-    const [currentWeather, setCurrentWeather] = useState({
-        temperature: '',
-        name: 'Berlin',
-        descr: 'cloudy',
-        feels_like: ''
-    })
-    console.log(currentWeather);
+    const [currentWeather, setCurrentWeather] = useState<WeatherObject>({})
+    //console.log(currentWeather);
     
 
     // Run once when app loads to set coordinates and city if geoLocation available
@@ -64,7 +68,7 @@ export const HomeController = () => {
             //console.log(newCityData.data);
             newCity = {
                 city: newCityData.data[0].name,
-                countryCode: newCityData.data[0].country.toLowerCase()
+                countryCode: newCityData.data[0].country
             }
             setCurrentCity(newCity)
         } else {
@@ -75,18 +79,19 @@ export const HomeController = () => {
     // set new weather
     const fetchWeather = async (lat: number, lon: number) => {
         const weatherData: any = await getWeather(lat, lon);
+        console.log(weatherData);
+        
         let newWeather = { ...currentWeather }
         
         newWeather = {
             temperature: weatherData.data.main.temp,
             name: weatherData.data.name,
             descr: weatherData.data.weather[0].description,
-            feels_like: weatherData.data.main.feels_like
+            feels_like: weatherData.data.main.feels_like,
+            icon: weatherData.data.weather[0].icon
         }
 
         setCurrentWeather(newWeather);
-
-        console.log(weatherData.data)
     }
 
     // set new city and coordinates from dropdown
