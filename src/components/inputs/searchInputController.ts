@@ -17,7 +17,7 @@ export const useSearchInputController = (setCoord: any) => {
       types: ['(cities)']
     },
     debounce: 300,
-    cache: 86400
+    cache: false
   });
 
   
