@@ -12,7 +12,6 @@ const PlacesAutocomplete = ({setCoord}: any) => {
 
   return (
     <div ref={fn.ref}>
-      <p>{JSON.stringify(ready)}</p>
       <input
         className={`${styles['form-control']}`}
         value={value}

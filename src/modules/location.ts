@@ -10,13 +10,13 @@ export const getCityGoogle = async (lat: number, lon: number) => {
 }
 
 export const getCity = async (lat: number, lon: number) => {
-  const cityData = await httpGet(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}`);
+  const cityData = await httpGet(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}`);
 
   return cityData;
 }
 
 export const getCoordinates = async (city: string) => {
-  const coord = await httpGet(`http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${openWeatherApiKey}`);
+  const coord = await httpGet(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=${openWeatherApiKey}`);
 
   return coord;
 }
