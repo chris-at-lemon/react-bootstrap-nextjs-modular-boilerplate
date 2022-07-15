@@ -4,10 +4,10 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 
-import { searchInputController } from "./searchInputController";
+import { useSearchInputController } from "./searchInputController";
 
 const PlacesAutocomplete = ({setCoord}: any) => {
-  const { ready, value, status, data, fn } = searchInputController(setCoord);
+  const { ready, value, status, data, fn } = useSearchInputController(setCoord);
 
   return (
     <div ref={fn.ref}>

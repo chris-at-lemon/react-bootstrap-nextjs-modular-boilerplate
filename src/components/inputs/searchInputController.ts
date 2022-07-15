@@ -4,7 +4,7 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 
-export const searchInputController = (setCoord: any) => {
+export const useSearchInputController = (setCoord: any) => {
   const {
     ready,
     value,
