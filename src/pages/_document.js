@@ -13,7 +13,7 @@ export default function Document() {
         {() => console.log(apiKey)}
         <script
           src={apiKey}
-          strategy="beforeInteractive" />
+          strategy="beforeInteractive" async />
           <h1>Hello</h1>
       </body>
     </Html>

@@ -26,7 +26,7 @@ export const useSearchInputController = (setCoord: any) => {
     clearSuggestions();
   });
   
-  const handleInput = (e) => {
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Set input value
     setValue(e.target.value);
   };
