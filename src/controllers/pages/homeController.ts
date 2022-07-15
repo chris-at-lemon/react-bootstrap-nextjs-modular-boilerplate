@@ -20,7 +20,8 @@ export const HomeController = () => {
     const [currentWeather, setCurrentWeather] = useState({
         temperature: '',
         name: 'Berlin',
-        descr: 'cloudy'
+        descr: 'cloudy',
+        feels_like: ''
     })
     console.log(currentWeather);
     
@@ -77,9 +78,10 @@ export const HomeController = () => {
         let newWeather = { ...currentWeather }
         
         newWeather = {
-            temperature: weatherData.data.main.temp + 'º',
+            temperature: weatherData.data.main.temp,
             name: weatherData.data.name,
-            descr: weatherData.data.weather[0].description
+            descr: weatherData.data.weather[0].description,
+            feels_like: weatherData.data.main.feels_like
         }
 
         setCurrentWeather(newWeather);
@@ -102,6 +104,7 @@ export const HomeController = () => {
     return {
         currentCoord,
         currentCity,
+        currentWeather,
         fn: {
             setNewCoord
         }

@@ -7,7 +7,7 @@ import styles from '../styles/pages/home/home.module.scss'
 import PlacesAutocomplete from '../components/inputs/search';
 
 const Home: NextPage = () => {
-  const { currentCoord, currentCity, fn } = HomeController();
+  const { currentCoord, currentCity, currentWeather, fn } = HomeController();
 
   return (
     <>
@@ -20,7 +20,10 @@ const Home: NextPage = () => {
         <button onClick={fn.getCity}>get city</button>
         <button onClick={fn.getCoordinates}>get coord</button>  */}
         <PlacesAutocomplete setCoord={fn.setNewCoord} />
-        {currentCity.city} {currentCity.countryCode}
+        <h4>{currentCity.city} {currentCity.countryCode}</h4>
+        <p>{currentWeather.temperature}º</p>
+        <p>{currentWeather.descr}</p>
+        <p>Feels like {currentWeather.feels_like}º</p>
       </div>
         </div>
       </div>
