@@ -6,18 +6,25 @@ interface IWeather {
     feels_like?: number,
     icon?: string
   }
-
 }
+
+import styles from '../weatherDisplay/weatherDisplay.module.scss'
 
 const WeatherDisplay = ( {weatherData}: IWeather ) => {
 
   return (
     <>
-    <h4>{weatherData.name}</h4>
-    <p>{weatherData.temperature}º</p>
-    <p>{weatherData.descr}</p>
-    <p>Feels like {weatherData.feels_like}º</p>
-    <p><img src={`http://openweathermap.org/img/wn/${weatherData.icon}@2x.png`} alt={weatherData.descr} /></p>
+    <h1 className={`${styles['weatherH1']}`}>{weatherData.name}</h1>
+    <div className={`${styles['weatherIconWrapper']}`} style={{backgroundImage: `url(http://openweathermap.org/img/wn/${weatherData.icon}@4x.png)`}}>
+      {/* <img src={`http://openweathermap.org/img/wn/${weatherData.icon}@4x.png`} alt={weatherData.descr} /> */}
+      <div className={`${styles['temperature']}`}>
+      {weatherData.temperature?.toString().split('.')[0]}º
+      </div>
+    </div>
+    <div className={`${styles['description']}`}>
+    <p>{weatherData.descr} and it feels like {weatherData.feels_like?.toString().split('.')[0]}º</p>
+      
+    </div>
     </>
   )
 }

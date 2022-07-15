@@ -22,7 +22,8 @@ export const HomeController = () => {
         name?: string,
         descr?: string,
         feels_like?: number,
-        icon?: string
+        icon?: string,
+        mainCondition?: string
       };
 
     // Weather always a result of coordinates
@@ -88,7 +89,8 @@ export const HomeController = () => {
             name: weatherData.data.name,
             descr: weatherData.data.weather[0].description,
             feels_like: weatherData.data.main.feels_like,
-            icon: weatherData.data.weather[0].icon
+            icon: weatherData.data.weather[0].icon,
+            mainCondition: weatherData.data.weather[0].main
         }
 
         setCurrentWeather(newWeather);

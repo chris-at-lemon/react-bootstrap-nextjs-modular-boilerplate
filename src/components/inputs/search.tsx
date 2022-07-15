@@ -5,6 +5,7 @@ import usePlacesAutocomplete, {
 import useOnclickOutside from "react-cool-onclickoutside";
 
 import { useSearchInputController } from "./searchInputController";
+import styles from '../inputs/search.module.scss'
 
 const PlacesAutocomplete = ({setCoord}: any) => {
   const { ready, value, status, data, fn } = useSearchInputController(setCoord);
@@ -12,6 +13,7 @@ const PlacesAutocomplete = ({setCoord}: any) => {
   return (
     <div ref={fn.ref}>
       <input
+        className={`${styles['form-control']}`}
         value={value}
         onChange={fn.handleInput}
         disabled={!ready}

@@ -9,22 +9,23 @@ import WeatherDisplay from '../components/weatherDisplay/weatherDisplay';
 
 const Home: NextPage = () => {
   const { currentCoord, currentCity, currentWeather, fn } = HomeController();
+  console.log(currentWeather?.mainCondition);
+  
 
   return (
     <>
-    <div className='container'>
-      <div className='row'>
-        <div className='col'>
-        <div className={`${styles['landingHero']}`}>
-        <h1>Get weather now</h1>
-        <PlacesAutocomplete setCoord={fn.setNewCoord} />
+      <div className={`${styles['landingHero']} ${styles[`${currentWeather?.mainCondition}`]}`}>
+        <div className={`${styles['appHeader']}`}>
+          <PlacesAutocomplete setCoord={fn.setNewCoord} />
+        </div>
+        <div className={`${styles['appWeather']}`}>
         {Object.keys(currentWeather).length !== 0 &&
           <WeatherDisplay weatherData={currentWeather} />
         }
-      </div>
         </div>
+        <div className={`${styles['appFooter']}`}></div>
       </div>
-    </div>
+
     </>
   )
 }

@@ -14,7 +14,6 @@ export default function Document() {
         <script
           src={apiKey}
           strategy="beforeInteractive" async />
-          <h1>Hello</h1>
       </body>
     </Html>
   )

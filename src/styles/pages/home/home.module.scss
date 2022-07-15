@@ -12,12 +12,36 @@
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  padding: 2rem 0 2rem 0;
+
+  &.Clear {
+    background-image: url('https://images.unsplash.com/photo-1588421357538-7c22591e4f90?q=75&fm=jpg&w=1080');
+    background-size: cover;
+  }
+  &.Clouds {
+    background-image: url('https://images.unsplash.com/photo-1617150119111-09bbb85178b0?q=75&fm=jpg&w=1080');
+    background-size: cover;
+  }
+  &.Thunderstorm {
+    background-image: url('https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?q=75&fm=jpg&w=1080');
+    background-size: cover;
+  }
+  &.Drizzle {
+    background-image: url('https://images.unsplash.com/photo-1617150119111-09bbb85178b0?q=75&fm=jpg&w=1080');
+    background-size: cover;
+  }
+  &.Rain {
+    background-image: url('https://images.unsplash.com/photo-1595949389862-dcc5a5945217?q=75&fm=jpg&w=1080');
+    background-size: cover;
+  }
+  &.Snow {
+    background-image: url('https://images.unsplash.com/photo-1608581796221-415be903abdb');
+    background-size: cover;
+  }
 }
-.loginCardWrapper {
-  margin-top: 2rem;
-}
-.searchContainer {
-  width: 100%;
+
+.appWeather {
+  text-align: center;
 }

@@ -36,7 +36,7 @@ const LayoutMain = ({ children }: any) => {
 				<meta name="application-name" content="lemon-digital.com" key="appName" />
 			</Head>
 
-			<Container>
+			<Container fluid>
 				<Row>
 					<Col>
 						{children}
