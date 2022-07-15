@@ -17,14 +17,20 @@ export const HomeController = () => {
     })
 
     // Weather always a result of coordinates
-    const [currentWeather, setCurrentWeather] = useState()
+    const [currentWeather, setCurrentWeather] = useState({
+        temperature: '',
+        name: 'Berlin',
+        descr: 'cloudy'
+    })
+    console.log(currentWeather);
+    
 
     // Run once when app loads to set coordinates and city if geoLocation available
     useEffect(() => {
         const getCurrentPosition = () => navigator.geolocation.getCurrentPosition(onSuccess, onError);
         getCurrentPosition();
         
-        // set new coordinates
+        // set new coordinates, city and weather
         function onSuccess(position: any) {
            const {
               latitude,
@@ -40,7 +46,9 @@ export const HomeController = () => {
 
           setCurrentCoord(newCoordinates);
           fetchCity(newCoordinates.lat, newCoordinates.lon);
+          fetchWeather(newCoordinates.lat, newCoordinates.lon)
       }
+      // Catch error
       function onError() {
         console.log('not allowed');
       }
@@ -65,8 +73,18 @@ export const HomeController = () => {
 
     // set new weather
     const fetchWeather = async (lat: number, lon: number) => {
-        const newWeatherData: any = await getWeather(lat, lon);
-        console.log(newWeatherData.data)
+        const weatherData: any = await getWeather(lat, lon);
+        let newWeather = { ...currentWeather }
+        
+        newWeather = {
+            temperature: weatherData.data.main.temp + 'º',
+            name: weatherData.data.name,
+            descr: weatherData.data.weather[0].description
+        }
+
+        setCurrentWeather(newWeather);
+
+        console.log(weatherData.data)
     }
 
     // set new city and coordinates from dropdown
