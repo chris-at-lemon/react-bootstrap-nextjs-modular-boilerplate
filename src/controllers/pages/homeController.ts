@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import { getCity } from '../../modules/location';
+import { getCity, getWeather } from '../../modules/location';
 
 export const HomeController = () => {
     // Source of truth: Coordinates decide location
+    // Coordinates also decide weather props
     const [currentCoord, setCurrentCoord] = useState({
         lat: 37.3911379,
         lon: -5.9938443
@@ -14,6 +15,9 @@ export const HomeController = () => {
         city: 'Berlin',
         countryCode: 'de'
     })
+
+    // Weather always a result of coordinates
+    const [currentWeather, setCurrentWeather] = useState()
 
     // Run once when app loads to set coordinates and city if geoLocation available
     useEffect(() => {
@@ -59,10 +63,22 @@ export const HomeController = () => {
         }
     }
 
+    // set new weather
+    const fetchWeather = async (lat: number, lon: number) => {
+        const newWeatherData: any = await getWeather(lat, lon);
+        console.log(newWeatherData.data)
+    }
+
     // set new city and coordinates from dropdown
     const setNewCoord = (lat: number, lon: number) => {
-        setCurrentCoord({lat: lat, lon: lon})
-        fetchCity(lat, lon)
+        let newCoord = { ...currentCoord }
+        newCoord = {
+            lat: lat,
+            lon: lon
+        }
+        setCurrentCoord(newCoord);
+        fetchCity(lat, lon);
+        fetchWeather(lat, lon);
     }
 
     return {
