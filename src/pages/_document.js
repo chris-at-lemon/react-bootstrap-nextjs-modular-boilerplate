@@ -11,9 +11,8 @@ export default function Document() {
         <Main />
         <NextScript />
         {() => console.log(apiKey)}
-        <script
-          src={apiKey}
-          strategy="beforeInteractive" async />
+        {/* eslint-disable-next-line no-use-before-define */}
+        <script src={apiKey} strategy="beforeInteractive" />
       </body>
     </Html>
   )
