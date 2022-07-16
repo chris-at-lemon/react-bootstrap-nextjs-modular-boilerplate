@@ -25,7 +25,7 @@ const Home: NextPage = () => {
         }
         </div>
         <div className={`${styles['appFooter']}`}>
-          <SavedSearches s />
+          <SavedSearches setCoord={fn.setNewCoord} />
         </div>
       </div>
 

@@ -35,12 +35,14 @@ export const useSearchInputController = (setCoord: any) => {
       // Second argument (false) to prevent additional API call
       setValue(description, false);
       clearSuggestions();
+      //Reset input 
+      setValue('');
   
       // Get latitude and longitude via utility functions
       getGeocode({ address: description }).then((results) => {
         const { lat, lng } = getLatLng(results[0]);
         // Callback that sets coordinates for main fetchWeather function
-        setCoord(lat, lng)
+        setCoord(lat, lng, true);
       });
     };
   

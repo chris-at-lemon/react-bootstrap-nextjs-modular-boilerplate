@@ -14,7 +14,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 0 2rem 0;
+  padding: 2rem 0 0 0;
 
   &.Clear {
     background-image: url('https://images.unsplash.com/photo-1588421357538-7c22591e4f90?q=75&fm=jpg&w=1080');
@@ -44,4 +44,16 @@
 
 .appWeather {
   text-align: center;
+}
+.appFooter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 20rem;
+
+  @include media-breakpoint-up(md) {
+    flex-wrap: nowrap;
+  } 
 }
