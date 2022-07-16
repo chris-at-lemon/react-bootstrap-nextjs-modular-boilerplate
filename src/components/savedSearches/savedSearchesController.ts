@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import uuid from "react-uuid"
+import { v4 as uuidv4 } from 'uuid';
 
 import { getWeather } from "../../modules/location";
 import { getSearchHistory } from "../../globalState/atoms/localStorage/localStorage";
@@ -11,7 +11,16 @@ import { searchHistory } from '../../globalState/atoms/savedSearches';
 export const useSearchesController = () => {
   const savedSearches = useRecoilValue(searchHistory);
   //console.log('savedSearches', savedSearches)
-  const [savedSearchesToDisplay, setSavedSearchesToDisplay] = useState([]);
+
+  // interface ISaved {
+  //   temp?: number,
+  //   city?: string,
+  //   icon?: string,
+  //   coord?: {lat: number, lon: number},
+  //   id?: string
+  // }
+
+  const [savedSearchesToDisplay, setSavedSearchesToDisplay] = useState<any>([]);
   
   // Runs every time we do a new search to save to saved searches
   useEffect(() => {
@@ -30,7 +39,7 @@ export const useSearchesController = () => {
           city: weatherData.data.name,
           icon: weatherData.data.weather[0].icon,
           coord: weatherData.data.coord,
-          id: uuid()
+          id: uuidv4()
         }
       );
       setSavedSearchesToDisplay(newWeatherToDisplay);
