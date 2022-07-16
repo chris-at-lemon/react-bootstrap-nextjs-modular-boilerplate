@@ -36,15 +36,11 @@ const LayoutMain = ({ children }: any) => {
 				<meta name="application-name" content="lemon-digital.com" key="appName" />
 			</Head>
 
-			<Container fluid>
-				<Row>
-					<Col>
-						{children}
-					</Col>
-				</Row>
-			</Container>
+			<div className='mainWrapper'>
+				{children}
+			</div>
 		</>
 	)
 }
 
-export default LayoutMain
+export default LayoutMain;

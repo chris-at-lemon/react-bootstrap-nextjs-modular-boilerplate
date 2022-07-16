@@ -100,7 +100,7 @@ export const HomeController = () => {
 		newWeather = {
 			temperature: weatherData.data.main.temp,
 			name: weatherData.data.name,
-			descr: weatherData.data.weather[0].description,
+			descr: weatherData.data.weather[0].description.charAt(0).toUpperCase() + weatherData.data.weather[0].description.slice(1),
 			feels_like: weatherData.data.main.feels_like,
 			icon: weatherData.data.weather[0].icon,
 			mainCondition: weatherData.data.weather[0].main

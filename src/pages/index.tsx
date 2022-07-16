@@ -1,6 +1,11 @@
 import type { NextPage } from 'next'
 import { useState } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+
+import Div100vh from 'react-div-100vh'
+
 import { HomeController } from '../controllers/pages/homeController'
 import styles from '../styles/pages/home/home.module.scss'
 
@@ -14,9 +19,10 @@ const Home: NextPage = () => {
 
   
   return (
-    <>
+    <Div100vh>
       <div className={`${styles['landingHero']} ${styles[`${currentWeather?.mainCondition}`]}`}>
         <div className={`${styles['appHeader']}`}>
+          <h1 className={`${styles['h1']}`}>El tiempo para Encarni  <FontAwesomeIcon className={`${styles['searchIcon']}`} icon={faHeart} /></h1>
           <PlacesAutocomplete setCoord={fn.setNewCoord} />
         </div>
         <div className={`${styles['appWeather']}`}>
@@ -28,8 +34,7 @@ const Home: NextPage = () => {
           <SavedSearches setCoord={fn.setNewCoord} />
         </div>
       </div>
-
-    </>
+    </Div100vh>
   )
 }
 
