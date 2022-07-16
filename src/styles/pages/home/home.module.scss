@@ -61,6 +61,7 @@
   align-items: flex-end;
   width: 100%;
   max-width: 20rem;
+  min-height: 10rem;
 
   @include media-breakpoint-up(md) {
     flex-wrap: nowrap;
