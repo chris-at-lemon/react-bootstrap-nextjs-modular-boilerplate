@@ -4,11 +4,23 @@
 // Mixins
 @import "../../styles/core/bootstrap/mixins/";
 
+// Buttons
+@import "../../styles/core/bootstrap/buttons";
+
 .savedSearchWrapper {
+  position: relative;
   flex-basis: 100%;
   display: flex;
   justify-content: space-between;
   padding: 1rem;
   border: solid 1px #ccc;
   background-color: rgba($color: #1468d6, $alpha: 0.1);
+}
+
+.btn-dismiss {
+  position: absolute;
+  top: -.125rem;
+  right: .5rem;
+  color: white;
+  padding: 0;
 }
