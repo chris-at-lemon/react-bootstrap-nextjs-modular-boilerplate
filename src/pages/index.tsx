@@ -6,12 +6,13 @@ import styles from '../styles/pages/home/home.module.scss'
 
 import PlacesAutocomplete from '../components/inputs/search';
 import WeatherDisplay from '../components/weatherDisplay/weatherDisplay';
+import SavedSearches from '../components/savedSearches/savedSearches';
 
 const Home: NextPage = () => {
-  const { currentCoord, currentCity, currentWeather, fn } = HomeController();
+  const { currentWeather, fn } = HomeController();
   console.log(currentWeather?.mainCondition);
-  
 
+  
   return (
     <>
       <div className={`${styles['landingHero']} ${styles[`${currentWeather?.mainCondition}`]}`}>
@@ -23,7 +24,9 @@ const Home: NextPage = () => {
           <WeatherDisplay weatherData={currentWeather} />
         }
         </div>
-        <div className={`${styles['appFooter']}`}></div>
+        <div className={`${styles['appFooter']}`}>
+          <SavedSearches s />
+        </div>
       </div>
 
     </>

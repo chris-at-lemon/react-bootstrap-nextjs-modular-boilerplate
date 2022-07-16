@@ -17,7 +17,7 @@ export const useSearchInputController = (setCoord: any) => {
       types: ['(cities)']
     },
     debounce: 300,
-    cache: false
+    cache: 86400
   });
 
   
@@ -39,6 +39,7 @@ export const useSearchInputController = (setCoord: any) => {
       // Get latitude and longitude via utility functions
       getGeocode({ address: description }).then((results) => {
         const { lat, lng } = getLatLng(results[0]);
+        // Callback that sets coordinates for main fetchWeather function
         setCoord(lat, lng)
       });
     };
