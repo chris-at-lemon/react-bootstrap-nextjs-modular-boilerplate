@@ -13,8 +13,8 @@ const SavedSearches = ({ setCoord }: any) => {
             return (
               <div className={`${styles['savedSearchWrapper']}`} key={search.id}>
                 <div onClick={() => setCoord(search.coord.lat, search.coord.lon, false)} className={`${styles['data']}`}>
-                  <div>{search.city}</div>
-                  <div>{search.temp?.toString().split('.')[0]}º</div>
+                  <div>{search.name}</div>
+                  <div>{search.temperature?.toString().split('.')[0]}º</div>
                 </div>
                 <div className={`${styles['icon']}`}>
                   <img src={`https://openweathermap.org/img/wn/${search.icon}.png`} alt={search.temp} />

@@ -3,6 +3,8 @@ import { getCity, getWeather } from '../../modules/location';
 import { useRecoilState } from 'recoil';
 import { recoilPersist } from 'recoil-persist'
 import { searchHistory } from '../../globalState/atoms/savedSearches';
+import { v4 as uuidv4 } from 'uuid';
+
 
 export const HomeController = () => {
 	// Source of truth: Coordinates decide location
@@ -31,7 +33,9 @@ export const HomeController = () => {
 		descr?: string,
 		feels_like?: number,
 		icon?: string,
-		mainCondition?: string
+		mainCondition?: string,
+		id?: string
+		coord?: {}
 	};
 
 	// Weather always a result of coordinates
@@ -96,9 +100,9 @@ export const HomeController = () => {
 	}
 
 	// set new weather
-	const fetchWeather = async (lat: number, lon: number) => {
+	const fetchWeather = async (lat: number, lon: number, updateSearchHistory?: boolean) => {
 		const weatherData: any = await getWeather(lat, lon);
-		//console.log(weatherData);
+		//console.log(weatherData.coord);
 
 		let newWeather = { ...currentWeather }
 
@@ -108,14 +112,23 @@ export const HomeController = () => {
 			descr: weatherData.data.weather[0].description.charAt(0).toUpperCase() + weatherData.data.weather[0].description.slice(1),
 			feels_like: weatherData.data.main.feels_like,
 			icon: weatherData.data.weather[0].icon,
-			mainCondition: weatherData.data.weather[0].main
+			mainCondition: weatherData.data.weather[0].main,
+			id: uuidv4(),
+			coord: {lat: weatherData.data.coord.lat, lon: weatherData.data.coord.lon}
 		}
 
+		
+
 		setCurrentWeather(newWeather);
+		if (updateSearchHistory) {
+			let currentSavedSearches = [...savedSearches]
+			currentSavedSearches.push(newWeather)
+			setSavedSearches(currentSavedSearches);
+		}
 	}
 
 	// set new city and coordinates from dropdown
-	const setNewCoord = (lat: number, lon: number, updateSaved: boolean) => {
+	const setNewCoord = (lat: number, lon: number, updateSearchHistory?: boolean) => {
 		// Set the new reference coordinates
 		let newCoord = { ...currentCoord }
 		newCoord = {
@@ -127,15 +140,7 @@ export const HomeController = () => {
 		// Use new coordinates for:
 		//geit city and weather
 		fetchCity(lat, lon);
-		fetchWeather(lat, lon);
-		
-
-		// Set gobal state for use in live session
-		if (updateSaved) {
-			let previousSearches: any = [...savedSearches];
-			previousSearches.push(newCoord);
-			setSavedSearches(previousSearches);
-		}
+		fetchWeather(lat, lon, updateSearchHistory);
 	}
 
 	return {
