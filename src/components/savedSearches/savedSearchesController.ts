@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
 
 import { getWeather } from "../../modules/location";
-import { getSearchHistory } from "../../globalState/atoms/localStorage/localStorage";
+import { getSearchHistory } from "../../globalState/localStorage/localStorage";
 
 import { useRecoilValue } from 'recoil';
 import { searchHistory } from '../../globalState/atoms/savedSearches';
@@ -10,7 +10,7 @@ import { searchHistory } from '../../globalState/atoms/savedSearches';
 
 export const useSearchesController = () => {
   const savedSearches = useRecoilValue(searchHistory);
-  //console.log('savedSearches', savedSearches)
+  console.log('savedSearches', savedSearches)
 
   // interface ISaved {
   //   temp?: number,
@@ -19,8 +19,9 @@ export const useSearchesController = () => {
   //   coord?: {lat: number, lon: number},
   //   id?: string
   // }
-
+  
   const [savedSearchesToDisplay, setSavedSearchesToDisplay] = useState<any>([]);
+  console.log('savedSearchesToDisplay', savedSearchesToDisplay)
   
   // Runs every time we do a new search to save to saved searches
   useEffect(() => {
@@ -30,7 +31,7 @@ export const useSearchesController = () => {
 
     reversed.forEach( async (search: any) => {
       const weatherData: any = await getWeather(search.lat, search.lon);
-      console.log('weatherData', weatherData.data);
+      //console.log('weatherData', weatherData.data);
 
       const newWeatherToDisplay: any = [...savedSearchesToDisplay];
       newWeatherToDisplay.push(
@@ -44,23 +45,20 @@ export const useSearchesController = () => {
       );
       setSavedSearchesToDisplay(newWeatherToDisplay);
 
-      const historyInStorage = getSearchHistory();
-      // console.log('historyInStorage', historyInStorage);
-      
     })
     
   }, [savedSearches]);
 
-  if (savedSearchesToDisplay.length > 3) {
-    handleRemove(savedSearchesToDisplay[0].id);
-  }
+  // if (savedSearchesToDisplay.length > 3) {
+  //   handleRemove(savedSearchesToDisplay[0].id);
+  // }
 
   function handleRemove(id: number) {
     console.log(id)
-    const newList = savedSearchesToDisplay.filter((item: any) => item.id !== id);
-    console.log('newList', newList);
+    // const newList = savedSearchesToDisplay.filter((item: any) => item.id !== id);
+    // console.log('newList', newList);
     
-    setSavedSearchesToDisplay(newList);
+    // setSavedSearchesToDisplay(newList);
     }
   
   return {

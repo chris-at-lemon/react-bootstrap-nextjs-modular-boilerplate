@@ -26,3 +26,9 @@ export const getWeather =async (lat: number, lon: number) => {
 
   return weather;
 }
+
+export const getForecast =async (lat: number, lon: number) => {
+  const weather = await httpGet(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${openWeatherApiKey}`);
+
+  return weather;
+}

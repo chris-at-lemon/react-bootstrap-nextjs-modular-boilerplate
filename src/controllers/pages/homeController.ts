@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getCity, getWeather } from '../../modules/location';
 import { useRecoilState } from 'recoil';
+import { recoilPersist } from 'recoil-persist'
 import { searchHistory } from '../../globalState/atoms/savedSearches';
 
 export const HomeController = () => {
@@ -20,6 +21,7 @@ export const HomeController = () => {
 
 	// Global store of previous searches
 	const [savedSearches, setSavedSearches] = useRecoilState(searchHistory);
+	const { persistAtom } = recoilPersist()
 	//console.log('savedSearches', savedSearches);
 
 
@@ -43,6 +45,9 @@ export const HomeController = () => {
 		// mainCondition: 'Thunderstorm'
 	})
 	//console.log(currentWeather);
+
+	// Weather forecast
+	const [forecast, setForecast] = useState()
 
 	// Run once when app loads to set coordinates and city if geoLocation available
 	useEffect(() => {
@@ -109,8 +114,6 @@ export const HomeController = () => {
 		setCurrentWeather(newWeather);
 	}
 
-
-
 	// set new city and coordinates from dropdown
 	const setNewCoord = (lat: number, lon: number, updateSaved: boolean) => {
 		// Set the new reference coordinates
@@ -125,6 +128,7 @@ export const HomeController = () => {
 		//geit city and weather
 		fetchCity(lat, lon);
 		fetchWeather(lat, lon);
+		
 
 		// Set gobal state for use in live session
 		if (updateSaved) {
@@ -133,15 +137,6 @@ export const HomeController = () => {
 			setSavedSearches(previousSearches);
 		}
 	}
-
-
-
-	// const saveSearchHistory = (coord: any) => {
-	// 	const savedSearchHistory: any = localStorage.getItem('searchHistory');
-	// 	const parsedSearchHistory: any = JSON.parse(savedSearchHistory);
-	// 	parsedSearchHistory.push(coord);
-	// 	localStorage.setItem('searchHistory', JSON.stringify(parsedSearchHistory));
-	// }
 
 	return {
 		currentCoord,
