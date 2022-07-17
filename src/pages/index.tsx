@@ -26,7 +26,8 @@ const Home: NextPage = () => {
           <PlacesAutocomplete setCoord={fn.setNewCoord} />
         </div>
         <div className={`${styles['appWeather']}`}>
-        {Object.keys(currentWeather).length !== 0 &&
+        {currentWeather &&
+        Object.keys(currentWeather).length !== 0 &&
           <WeatherDisplay weatherData={currentWeather} />
         }
         </div>

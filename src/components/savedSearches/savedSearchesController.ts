@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
 
-import { getWeather } from "../../modules/location";
-
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { searchHistory } from '../../globalState/atoms/savedSearches';
 
 
@@ -32,11 +29,12 @@ export const useSearchesController = () => {
 
   //console.log('savedSearchesToDisplay', savedSearchesToDisplay)
 
+  // Remove search history items
   function handleRemove(id: number) {
     const newList = savedSearches.filter((item: any) => item.id !== id);
     console.log('newList', newList);
     setSavedSearches(newList);
-    }
+  }
   
   return {
     savedSearchesToDisplay,

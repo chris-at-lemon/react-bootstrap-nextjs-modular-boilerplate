@@ -1,18 +1,17 @@
 .weatherH1 {
   text-align: center;
-  margin-bottom: -30px;
 }
 .weatherIconWrapper {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 200px;
-  height: 200px;
-  margin-bottom: -30px;
+  width: 300px;
+  height: 300px;
+  margin: -5rem -3rem;
 }
 .temperature {
  font-size: 4rem;
  font-weight: bold;
  text-align: center;
- margin-left: -2rem;
+ margin-left: -1rem;
 }

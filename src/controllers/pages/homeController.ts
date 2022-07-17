@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { getCity, getWeather } from '../../modules/location';
 import { useRecoilState } from 'recoil';
-import { recoilPersist } from 'recoil-persist'
 import { searchHistory } from '../../globalState/atoms/savedSearches';
 import { v4 as uuidv4 } from 'uuid';
+import dayjs from 'dayjs'
 
 
 export const HomeController = () => {
@@ -21,9 +21,8 @@ export const HomeController = () => {
 		countryCode: 'de'
 	})
 
-	// Global store of previous searches
+	// Global store of previous searches,source of truth for all search istory (current state and persisted state)
 	const [savedSearches, setSavedSearches] = useRecoilState(searchHistory);
-	const { persistAtom } = recoilPersist()
 	//console.log('savedSearches', savedSearches);
 
 
@@ -31,15 +30,17 @@ export const HomeController = () => {
 		temperature?: number,
 		name?: string,
 		descr?: string,
-		feels_like?: number,
+		feelsLike?: number,
 		icon?: string,
 		mainCondition?: string,
 		id?: string
-		coord?: {}
+		coord?: {},
+		date?: any
 	};
 
 	// Weather always a result of coordinates
-	const [currentWeather, setCurrentWeather] = useState<WeatherObject>({
+	const [currentWeather, setCurrentWeather] = useState<WeatherObject>(
+		// {
 		// for weather background testing
 		// temperature: 33,
 		// name: 'Berlin',
@@ -47,7 +48,8 @@ export const HomeController = () => {
 		// feels_like: 32,
 		// icon: '01d',
 		// mainCondition: 'Thunderstorm'
-	})
+		// }
+	)
 	//console.log(currentWeather);
 
 	// Weather forecast
@@ -85,6 +87,8 @@ export const HomeController = () => {
 	// set new city
 	const fetchCity = async (lat: number, lon: number) => {
 		const newCityData: any = await getCity(lat, lon);
+		console.log(newCityData)
+
 		let newCity = { ...currentCity }
 
 		if (newCityData.status === 200) {
@@ -99,27 +103,33 @@ export const HomeController = () => {
 		}
 	}
 
+	
 	// set new weather
 	const fetchWeather = async (lat: number, lon: number, updateSearchHistory?: boolean) => {
 		const weatherData: any = await getWeather(lat, lon);
-		//console.log(weatherData.coord);
+		console.log(weatherData);
+		// Use Google API for better accuracy in city names
+		const cityData: any = await getCity(lat, lon);
+		// Get date and time
+		const newDate = new Date();
+		const searchDate = dayjs(newDate).format('DD/MM/YYYY, hh:mm A');
 
 		let newWeather = { ...currentWeather }
 
 		newWeather = {
 			temperature: weatherData.data.main.temp,
-			name: weatherData.data.name,
+			name: cityData.data[0].name,
 			descr: weatherData.data.weather[0].description.charAt(0).toUpperCase() + weatherData.data.weather[0].description.slice(1),
-			feels_like: weatherData.data.main.feels_like,
+			feelsLike: weatherData.data.main.feels_like,
 			icon: weatherData.data.weather[0].icon,
 			mainCondition: weatherData.data.weather[0].main,
 			id: uuidv4(),
-			coord: {lat: weatherData.data.coord.lat, lon: weatherData.data.coord.lon}
+			coord: {lat: weatherData.data.coord.lat, lon: weatherData.data.coord.lon},
+			date: searchDate
 		}
-
-		
-
+	
 		setCurrentWeather(newWeather);
+	
 		if (updateSearchHistory) {
 			let currentSavedSearches = [...savedSearches]
 			currentSavedSearches.push(newWeather)
