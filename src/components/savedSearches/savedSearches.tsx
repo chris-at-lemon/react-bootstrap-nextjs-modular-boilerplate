@@ -21,12 +21,14 @@ const SavedSearches = ({ setCoord }: any) => {
                   <div>{search.temperature?.toString().split('.')[0]}º</div>
                 </div>
                 <div className={`${styles['refreshSearch']}`}>
-                <FontAwesomeIcon className={`${styles['refreshIcon']}`} icon={faRefresh} />
+                <div onClick={() => setCoord(search.coord.lat, search.coord.lon, true)}>
+                  <FontAwesomeIcon className={`${styles['refreshIcon']}`} icon={faRefresh} />
+                </div>
                 </div>
                 <div className={`${styles['icon']}`}>
-                  <img src={`https://openweathermap.org/img/wn/${search.icon}.png`} alt={search.temp} />
+                  <img src={`https://openweathermap.org/img/wn/${search.icon}.png`} alt={search.descr} />
                 </div>
-                <button className={`${styles['btn']} ${styles['btn-dismiss']}`} onClick={() => fn.handleRemove(search.id)}>
+                <button className={`${styles['btn']} ${styles['btn-dismiss']}`} onClick={() => fn.handleRemove(search.id)} aria-label="remove from list">
                   <FontAwesomeIcon className={`${styles['closeIcon']}`} icon={faTimes} />
                 </button>
               </div>

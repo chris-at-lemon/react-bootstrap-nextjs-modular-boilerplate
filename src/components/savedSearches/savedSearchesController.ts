@@ -7,24 +7,17 @@ import { searchHistory } from '../../globalState/atoms/savedSearches';
 export const useSearchesController = () => {
   const [savedSearches, setSavedSearches] = useRecoilState(searchHistory);
   //console.log('savedSearches', savedSearches)
-
-  // interface ISaved {
-  //   temp?: number,
-  //   city?: string,
-  //   icon?: string,
-  //   coord?: {lat: number, lon: number},
-  //   id?: string
-  // }
-  
+  const [allSavedSearches, setAllSavedSearches] = useState();
   const [savedSearchesToDisplay, setSavedSearchesToDisplay] = useState<any[]>([]);
   
   // Set initial saved searches to last 3 from persisted history
   // Update when global state changes
   useEffect(() => {
     const history: any[] = [...savedSearches];
-    const reverseHistory = history.reverse().slice(0, 3);
+    const slicedReverseHistory = history.reverse().slice(0, 3);
+    const allReverseHistory = history.reverse();
     
-    setSavedSearchesToDisplay(reverseHistory);
+    setSavedSearchesToDisplay(slicedReverseHistory);
   }, [savedSearches])
 
   //console.log('savedSearchesToDisplay', savedSearchesToDisplay)

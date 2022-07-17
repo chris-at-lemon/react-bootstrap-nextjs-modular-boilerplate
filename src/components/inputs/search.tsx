@@ -1,3 +1,4 @@
+import {useRef, useEffect} from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 
@@ -6,6 +7,14 @@ import styles from '../inputs/search.module.scss'
 
 const PlacesAutocomplete = ({setCoord}: any) => {
   const { ready, value, status, data, fn } = useSearchInputController(setCoord);
+
+  const searchInput: any = useRef(null);
+
+  useEffect(() => {
+    if (searchInput.current) {
+      searchInput.current.focus();
+    }
+  }, []);
 
   return (
     <div ref={fn.ref}>
@@ -16,6 +25,7 @@ const PlacesAutocomplete = ({setCoord}: any) => {
           onChange={fn.handleInput}
           placeholder="Enter a city"
           aria-label="Search city"
+          ref={searchInput}
         />
         <FontAwesomeIcon className={`${styles['searchIcon']}`} icon={faMagnifyingGlass} />
       </div>

@@ -5,7 +5,10 @@
 // Mixins
 @import "../../core/bootstrap/mixins";
 
+// Components
 @import '../../core/bootstrap/buttons';
+@import '../../core/bootstrap/alert';
+
 
 .landingHero {
   height: 100%;
@@ -16,29 +19,72 @@
   align-items: center;
   padding: 2rem 0 0 0;
 
+  background: linear-gradient(to top,  rgba(97, 144, 232, 1), rgba(167, 191, 232, 1));
+  background-color: #000;
+
   &.Clear {
-    background-image: url('https://images.unsplash.com/photo-1588421357538-7c22591e4f90?q=75&fm=jpg&w=1080');
-    background-size: cover;
+    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
+    background-color: #000;
   }
   &.Clouds {
-    background-image: url('https://images.unsplash.com/photo-1617150119111-09bbb85178b0?q=75&fm=jpg&w=1080');
-    background-size: cover;
+    background: linear-gradient(to top,  rgba(189, 195, 199, 1), rgba(44, 62, 80, 1));
+    background-color: #000;
   }
   &.Thunderstorm {
-    background-image: url('https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?q=75&fm=jpg&w=1080');
-    background-size: cover;
+    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
+    background-color: #000;
   }
   &.Drizzle {
-    background-image: url('https://images.unsplash.com/photo-1617150119111-09bbb85178b0?q=75&fm=jpg&w=1080');
-    background-size: cover;
+    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
+    background-color: #000;
   }
   &.Rain {
-    background-image: url('https://images.unsplash.com/photo-1595949389862-dcc5a5945217?q=75&fm=jpg&w=1080');
-    background-size: cover;
+    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
+    background-color: #000;
   }
   &.Snow {
-    background-image: url('https://images.unsplash.com/photo-1608581796221-415be903abdb');
-    background-size: cover;
+    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
+    background-color: #000;
+  }
+  &.Snow {
+    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
+    background-color: #000;
+  }
+  &.Smoke {
+    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
+    background-color: #000;
+  }
+  &.Haze {
+    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
+    background-color: #000;
+  }
+  &.Dust {
+    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
+    background-color: #000;
+  }
+  &.Fog {
+    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
+    background-color: #000;
+  }
+  &.Sand {
+    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
+    background-color: #000;
+  }
+  &.Dust {
+    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
+    background-color: #000;
+  }
+  &.Ash {
+    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
+    background-color: #000;
+  }
+  &.Squall {
+    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
+    background-color: #000;
+  }
+  &.Tornado {
+    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
+    background-color: #000;
   }
 }
 .h1 {

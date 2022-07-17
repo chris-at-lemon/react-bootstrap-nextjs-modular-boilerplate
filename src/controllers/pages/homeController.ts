@@ -55,6 +55,10 @@ export const HomeController = () => {
 	// Weather forecast
 	const [forecast, setForecast] = useState()
 
+	// permissions and gheolocation
+	const [currentPermission, setCurrentPermission] = useState<string>('prompt')
+	console.log('currentPermission', currentPermission)
+	
 	// Run once when app loads to set coordinates and city if geoLocation available
 	useEffect(() => {
 		const getCurrentPosition = () => navigator.geolocation.getCurrentPosition(onSuccess, onError);
@@ -77,10 +81,12 @@ export const HomeController = () => {
 			setCurrentCoord(newCoordinates);
 			fetchCity(newCoordinates.lat, newCoordinates.lon);
 			fetchWeather(newCoordinates.lat, newCoordinates.lon)
+			setCurrentPermission('granted')
 		}
 		// Catch error
-		function onError() {
-			console.log('not allowed');
+		function onError(error: any) {
+			console.log('error:', error);
+			setCurrentPermission('denied')
 		}
 	}, [])
 
@@ -157,6 +163,7 @@ export const HomeController = () => {
 		currentCoord,
 		currentCity,
 		currentWeather,
+		currentPermission,
 		fn: {
 			setNewCoord
 		}

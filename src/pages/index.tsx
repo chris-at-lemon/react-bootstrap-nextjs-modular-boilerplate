@@ -14,10 +14,10 @@ import WeatherDisplay from '../components/weatherDisplay/weatherDisplay';
 import SavedSearches from '../components/savedSearches/savedSearches';
 
 const Home: NextPage = () => {
-  const { currentWeather, fn } = HomeController();
+  const { currentWeather, currentPermission, fn } = HomeController();
   console.log(currentWeather?.mainCondition);
 
-  
+
   return (
     <Div100vh>
       <div className={`${styles['landingHero']} ${styles[`${currentWeather?.mainCondition}`]}`}>
@@ -26,10 +26,23 @@ const Home: NextPage = () => {
           <PlacesAutocomplete setCoord={fn.setNewCoord} />
         </div>
         <div className={`${styles['appWeather']}`}>
-        {currentWeather &&
-        Object.keys(currentWeather).length !== 0 &&
-          <WeatherDisplay weatherData={currentWeather} />
-        }
+          {currentPermission === 'prompt' && !currentWeather || currentPermission === 'denied' && currentWeather ?
+            <div className='container'>
+              <div className='row'>
+                <div className='col'>
+                  <div className={`${styles['alert']} ${styles['alert-primary']}`}>
+                    If you allow us to use your current location we can find the weather near you right now!
+                  </div>
+                  <p>Otherwise just type your desired location into the input above</p>
+                </div>
+              </div>
+            </div>
+            :
+            ''
+          }
+          {currentWeather &&
+           <WeatherDisplay weatherData={currentWeather} />
+          }
         </div>
         <div className={`${styles['appFooter']}`}>
           <SavedSearches setCoord={fn.setNewCoord} />

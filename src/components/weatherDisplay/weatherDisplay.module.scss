@@ -1,13 +1,21 @@
 .weatherH1 {
   text-align: center;
 }
-.weatherIconWrapper {
+.pDesc {
+  margin-bottom: 0;
+}
+.pTimeOfDay {
+  font-size: .75rem;
+}
+.iconAndTemp {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  width: 300px;
-  height: 300px;
-  margin: -5rem -3rem;
+}
+.weatherIconWrapper {
+  width: 200px;
+  height: 200px;
+  margin: -2rem 0 -2rem -3rem;
 }
 .temperature {
  font-size: 4rem;
