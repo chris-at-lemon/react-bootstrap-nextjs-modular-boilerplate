@@ -5,22 +5,19 @@ import { searchHistory } from "../../globalState/atoms/savedSearches";
 import { v4 as uuidv4 } from "uuid";
 import dayjs from "dayjs";
 
-import { IWeatherObject, ICoords } from "../../globalInterfaces/pages/home";
+import { IWeatherObject, ICoords, ICity, ISetNewCoord, IFetchWheater } from "../../globalInterfaces/pages/home";
 
 export const HomeController = () => {
   // Source of truth: Coordinates decide location
   // Coordinates also decide weather props
   const [currentCoord, setCurrentCoord] = useState<ICoords>({
-    lat: 37.3911379,
-    lon: -5.9938443,
+    lat: 0,
+    lon: 0,
   });
   //console.log(currentCoord)
 
   // City name always a result of coordinates
-  const [currentCity, setCurrentCity] = useState({
-    city: "Berlin",
-    countryCode: "de",
-  });
+  const [currentCity, setCurrentCity] = useState<ICity>({});
 
   // Global store of previous searches,source of truth for all search istory (current state and persisted state)
   const [savedSearches, setSavedSearches] = useRecoilState(searchHistory);
@@ -29,7 +26,7 @@ export const HomeController = () => {
   // Weather always a result of coordinates
   const [currentWeather, setCurrentWeather] = useState<IWeatherObject>();
 
-  console.log(currentWeather);
+  //console.log(currentWeather);
 
   // permissions and gheolocation
   const [currentPermission, setCurrentPermission] = useState<string>("prompt");
@@ -62,7 +59,7 @@ export const HomeController = () => {
     const { latitude, longitude } = position.coords;
 
     // set new city
-    let newCoordinates = { ...currentCoord };
+    let newCoordinates: ICoords = { ...currentCoord };
     newCoordinates = {
       lat: latitude,
       lon: longitude,
@@ -75,14 +72,14 @@ export const HomeController = () => {
   }
   // Catch error / not really needed as permissions were sniffed above
   function onError() {
-    console.log("not allowed");
+    //console.log("not allowed");
     setCurrentPermission("denied");
   }
 
   // set new city
   const fetchCity = async (lat: number, lon: number) => {
     const newCityData: any = await getCity(lat, lon);
-    console.log(newCityData);
+    //console.log(newCityData);
 
     let newCity = { ...currentCity };
 
@@ -99,9 +96,9 @@ export const HomeController = () => {
   };
 
   // set new weather
-  const fetchWeather = async (lat: number, lon: number, updateSearchHistory?: boolean) => {
+  const fetchWeather: IFetchWheater = async (lat, lon, updateSearchHistory) => {
     const weatherData: any = await getWeather(lat, lon);
-    console.log(weatherData);
+    //console.log(weatherData);
     // Use Google API for better accuracy in city names
     const cityData: any = await getCity(lat, lon);
     // Get date and time
@@ -132,7 +129,7 @@ export const HomeController = () => {
   };
 
   // set new city and coordinates from dropdown
-  const setNewCoord = (lat: number, lon: number, updateSearchHistory?: boolean) => {
+  const setNewCoord: ISetNewCoord = (lat, lon, updateSearchHistory) => {
     // Set the new reference coordinates
     let newCoord = { ...currentCoord };
     newCoord = {

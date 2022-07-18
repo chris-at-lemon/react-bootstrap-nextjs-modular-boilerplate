@@ -1,10 +1,9 @@
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
+import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 
-export const useSearchInputController = (setCoord: any) => {
+import { ISetCoord } from "../inputs/searchInterface";
+
+export const useSearchInputController = (setCoord: ISetCoord) => {
   const {
     ready,
     value,
@@ -14,30 +13,32 @@ export const useSearchInputController = (setCoord: any) => {
   } = usePlacesAutocomplete({
     requestOptions: {
       /* Google Maps Places API Options */
-      types: ['(cities)']
+      types: ["(cities)"],
     },
     debounce: 300,
-    cache: 86400
+    cache: 86400,
   });
 
-  
   const ref = useOnclickOutside(() => {
     // Helper for clicking outside of focussed element
     clearSuggestions();
   });
-  
+
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     // Set input value
     setValue(e.target.value);
   };
-  
-  const handleSelect = ({ description }: any) => () => {
+
+  const handleSelect =
+    ({ description }: any) =>
+    () => {
+      console.log("description", description);
       // Second argument (false) to prevent additional API call
       setValue(description, false);
       clearSuggestions();
-      //Reset input 
-      setValue('');
-  
+      //Reset input
+      setValue("");
+
       // Get latitude and longitude via utility functions
       getGeocode({ address: description }).then((results) => {
         const { lat, lng } = getLatLng(results[0]);
@@ -45,16 +46,16 @@ export const useSearchInputController = (setCoord: any) => {
         setCoord(lat, lng, true);
       });
     };
-  
-    return {
-      ready,
-      value,
-      status,
-      data,
-      fn: {
-        ref,
-        handleInput,
-        handleSelect
-      }
-    }
-}
+
+  return {
+    ready,
+    value,
+    status,
+    data,
+    fn: {
+      ref,
+      handleInput,
+      handleSelect,
+    },
+  };
+};
