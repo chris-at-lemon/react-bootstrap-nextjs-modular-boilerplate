@@ -9,7 +9,7 @@
 @import '../../core/bootstrap/buttons';
 @import '../../core/bootstrap/alert';
 
-
+// Containers
 .landingHero {
   height: 100%;
   display: flex;
@@ -87,16 +87,30 @@
     background-color: #000;
   }
 }
-.h1 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 1rem;
 
-  & .searchIcon {
-    color: rgba($color: red, $alpha: .7);
-  }
+.settings {
+ position: absolute;
+ top: 1rem;
+ right: 1rem;
 }
+
+.sideDrawer {
+  position: absolute;
+  right: 0;
+  top: 1.5rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 99;
+  background: #fff;
+  padding: 1rem 1rem 1rem 1rem;
+  box-shadow: -4px 4px 4px 4px rgba(0,0,0,0.1);
+  background: #f6f6f6;
+  min-width: 20rem;
+}
+.settingsIcon {
+  cursor: pointer;
+}
+
 .appWeather {
   text-align: center;
 }
@@ -112,4 +126,26 @@
   @include media-breakpoint-up(md) {
     flex-wrap: nowrap;
   } 
+}
+
+// Typography
+.h1 {
+  font-size: .75rem;
+  text-align: center;
+  margin-bottom: 1rem;
+
+  & .brandIcon {
+    font-size: 2rem;
+  }
+}
+
+// display overrides
+.d-none {
+  display: none !important;
+}
+.d-block {
+  display: block !important;
+}
+.w-100 {
+  width: 100% !important;
 }
