@@ -5,10 +5,12 @@ import { searchHistory } from "../../globalState/atoms/savedSearches";
 import { v4 as uuidv4 } from "uuid";
 import dayjs from "dayjs";
 
+import { IWeatherObject, ICoords } from "../../globalInterfaces/pages/home";
+
 export const HomeController = () => {
   // Source of truth: Coordinates decide location
   // Coordinates also decide weather props
-  const [currentCoord, setCurrentCoord] = useState({
+  const [currentCoord, setCurrentCoord] = useState<ICoords>({
     lat: 37.3911379,
     lon: -5.9938443,
   });
@@ -24,65 +26,58 @@ export const HomeController = () => {
   const [savedSearches, setSavedSearches] = useRecoilState(searchHistory);
   //console.log('savedSearches', savedSearches);
 
-  interface WeatherObject {
-    temperature?: number;
-    name?: string;
-    descr?: string;
-    feelsLike?: number;
-    icon?: string;
-    mainCondition?: string;
-    id?: string;
-    coord?: {};
-    date?: any;
-  }
-
   // Weather always a result of coordinates
-  const [currentWeather, setCurrentWeather] = useState<WeatherObject>();
-  // {
-  // for weather background testing
-  // temperature: 33,
-  // name: 'Berlin',
-  // descr: 'feels great',
-  // feels_like: 32,
-  // icon: '01d',
-  // mainCondition: 'Thunderstorm'
-  // }
-  //console.log(currentWeather);
+  const [currentWeather, setCurrentWeather] = useState<IWeatherObject>();
 
-  // Weather forecast
-  const [forecast, setForecast] = useState();
+  console.log(currentWeather);
 
   // permissions and gheolocation
   const [currentPermission, setCurrentPermission] = useState<string>("prompt");
-  console.log("currentPermission", currentPermission);
+  //console.log("currentPermission", currentPermission);
 
-  // Run once when app loads to set coordinates and city if geoLocation available
+  // Check for permissions, if granted run geoLocation, if not offer alternative.
   useEffect(() => {
-    const getCurrentPosition = () => navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    getCurrentPosition();
+    navigator.permissions.query({ name: "geolocation" }).then(function (result) {
+      if (result.state === "granted") {
+        //console.log("granted permission");
+        getCurrentPosition();
+        setCurrentPermission("granted");
+      }
+      if (result.state === "prompt") {
+        //console.log("prompt for permission");
+        setCurrentPermission("prompt");
+      }
+      if (result.state === "denied") {
+        //console.log("permission denied");
+        setCurrentPermission("denied");
+      }
+    });
+  }, [currentPermission]);
 
-    // set new coordinates, city and weather
-    function onSuccess(position: any) {
-      const { latitude, longitude } = position.coords;
+  // Get current position
+  const getCurrentPosition = () => navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
-      // set new city
-      let newCoordinates = { ...currentCoord };
-      newCoordinates = {
-        lat: latitude,
-        lon: longitude,
-      };
+  // set new coordinates, city and weather
+  function onSuccess(position: any) {
+    const { latitude, longitude } = position.coords;
 
-      setCurrentCoord(newCoordinates);
-      fetchCity(newCoordinates.lat, newCoordinates.lon);
-      fetchWeather(newCoordinates.lat, newCoordinates.lon);
-      setCurrentPermission("granted");
-    }
-    // Catch error
-    function onError(error: any) {
-      console.log("error:", error);
-      setCurrentPermission("denied");
-    }
-  }, []);
+    // set new city
+    let newCoordinates = { ...currentCoord };
+    newCoordinates = {
+      lat: latitude,
+      lon: longitude,
+    };
+
+    setCurrentCoord(newCoordinates);
+    fetchCity(newCoordinates.lat, newCoordinates.lon);
+    fetchWeather(newCoordinates.lat, newCoordinates.lon);
+    setCurrentPermission("granted");
+  }
+  // Catch error / not really needed as permissions were sniffed above
+  function onError() {
+    console.log("not allowed");
+    setCurrentPermission("denied");
+  }
 
   // set new city
   const fetchCity = async (lat: number, lon: number) => {
@@ -173,6 +168,7 @@ export const HomeController = () => {
       setNewCoord,
       toggleSideDrawer,
       togglesearchHistory,
+      getCurrentPosition,
     },
   };
 };

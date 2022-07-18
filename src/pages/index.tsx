@@ -16,7 +16,7 @@ import AllSavedSearches from "../components/savedSearches/allSavedSearches";
 
 const Home: NextPage = () => {
   const { currentWeather, currentPermission, sideDrawerIsActive, searchHistoryIsActive, fn } = HomeController();
-  console.log(currentWeather?.mainCondition);
+  //console.log(currentWeather?.mainCondition);
 
   return (
     <Div100vh>
@@ -31,20 +31,26 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className={`${styles["landingHero"]} ${styles[`${currentWeather?.mainCondition}`]}`}>
+      <div className={`${styles["landingHero"]} ${styles[`${currentWeather?.mainCondition}`]} ${currentWeather?.icon?.slice(-1) === "n" && styles["night"]}`}>
         <div className={`${styles["appHeader"]}`}>
           <h1 className={`${styles["h1"]}`}>
-            <FontAwesomeIcon className={`${styles["brandIcon"]}`} icon={faRainbow} />
+            <div className={`${styles["logoIcon"]}`}>
+              <FontAwesomeIcon className={`${styles["brandIcon"]}`} icon={faRainbow} />
+            </div>
             <div>Rainbow Weather</div>
           </h1>
           <PlacesAutocomplete setCoord={fn.setNewCoord} />
+          <div className={`${styles["placeHolder"]}`}></div>
         </div>
         <div className={`${styles["appWeather"]}`}>
-          {(currentPermission === "prompt" && !currentWeather) || (currentPermission === "denied" && currentWeather) ? (
+          {(currentPermission === "prompt" && !currentWeather) || (currentPermission === "denied" && !currentWeather) ? (
             <div className="container">
               <div className="row">
                 <div className="col">
                   <div className={`${styles["alert"]} ${styles["alert-primary"]}`}>If you allow us to use your current location we can find the weather near you right now!</div>
+                  <button onClick={fn.getCurrentPosition} className={`${styles["btn"]} ${styles["btn-primary"]} ${styles["btn-findWeather"]}`}>
+                    Find weather near me
+                  </button>
                   <p>Otherwise just type your desired location into the input above</p>
                 </div>
               </div>

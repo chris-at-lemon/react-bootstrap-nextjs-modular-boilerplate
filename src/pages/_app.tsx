@@ -1,11 +1,13 @@
-import '../styles/globals.scss'
-import dynamic from 'next/dynamic'
-import type { AppProps } from 'next/app'
-import {
-  RecoilRoot,
-} from 'recoil';
+import "../styles/globals.scss";
+import dynamic from "next/dynamic";
+import type { AppProps } from "next/app";
+import { RecoilRoot } from "recoil";
 
-const LayoutMain = dynamic(() => import("../components/layout/layoutMain"));
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
+
+import LayoutMain from "../components/layout/LayoutMain";
 
 function RostiApp({ Component, pageProps }: AppProps) {
   return (
@@ -14,8 +16,7 @@ function RostiApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </LayoutMain>
     </RecoilRoot>
-  )
-  
+  );
 }
 
-export default RostiApp
+export default RostiApp;

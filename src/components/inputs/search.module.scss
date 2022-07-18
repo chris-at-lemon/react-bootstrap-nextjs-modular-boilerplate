@@ -20,11 +20,14 @@
 
 .form-control {
   font-size: 1.2rem;
-  min-width: 18rem;
+  width: 18rem;
   border-radius: 0;
 }
 
 .suggestions {
+  position: absolute;
+  z-index: 99;
+  width: 18rem;
   background-color: white;
   color: $gray-900;
   padding: .5rem 1rem;

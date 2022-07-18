@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { useSearchesController } from "../savedSearches/savedSearchesController";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,7 +30,7 @@ const AllSavedSearches = ({ setCoord }: any) => {
                 </div>
               </div>
               <div className={`${styles["icon"]}`}>
-                <img src={`https://openweathermap.org/img/wn/${search.icon}.png`} alt={search.descr} />
+                <Image src={`https://openweathermap.org/img/wn/${search.icon}.png`} alt={search.descr} width={50} height={50} />
               </div>
               <button className={`${styles["btn"]} ${styles["btn-dismiss"]}`} onClick={() => fn.handleRemove(search.id)} aria-label="remove from list">
                 <FontAwesomeIcon className={`${styles["closeIcon"]}`} icon={faTimes} />

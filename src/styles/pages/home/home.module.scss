@@ -19,79 +19,145 @@
   align-items: center;
   padding: 2rem 0 0 0;
 
-  background: linear-gradient(to top,  rgba(97, 144, 232, 1), rgba(167, 191, 232, 1));
-  background-color: #000;
+  background: linear-gradient(to top, rgba(97, 144, 232, 1), rgba(167, 191, 232, 1));
 
   &.Clear {
-    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
-    background-color: #000;
+    background: linear-gradient(to top, rgba(109, 213, 237, 1), rgba(33, 147, 176, 1));
+
+    &.night {
+      background: linear-gradient(to top, rgba(109, 213, 237, .7), rgba(33, 147, 176, .7));
+      background-color: #000;
+    }
   }
+
   &.Clouds {
-    background: linear-gradient(to top,  rgba(189, 195, 199, 1), rgba(44, 62, 80, 1));
-    background-color: #000;
+    background: linear-gradient(to top, rgba(189, 195, 199, 1), rgba(44, 62, 80, 1));
+
+    &.night {
+      background: linear-gradient(to top, rgba(189, 195, 199, .7), rgba(44, 62, 80, .7));
+      background-color: #000;
+
+    }
   }
+
   &.Thunderstorm {
-    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
-    background-color: #000;
+    background: linear-gradient(to top, rgba(20, 30, 48, 1), rgba(36, 59, 85, 1));
+
+    &.night {
+      background: linear-gradient(to top, rgba(20, 30, 48, .7), rgba(36, 59, 85, .7));
+      background-color: #000;
+    }
   }
+
   &.Drizzle {
-    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
-    background-color: #000;
+    background: linear-gradient(to top, rgba(96, 108, 136, 1), rgba(63, 76, 107, 1));
+
+    &.night {
+      background: linear-gradient(to top, rgba(96, 108, 136, .7), rgba(63, 76, 107, .7));
+      background-color: #000;
+    }
   }
+
   &.Rain {
-    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
-    background-color: #000;
+    background: linear-gradient(to top, rgba(146, 141, 171, 1), rgba(31, 28, 44, 1));
+
+    &.night {
+      background: linear-gradient(to top, rgba(146, 141, 171, .7), rgba(31, 28, 44, .7));
+      background-color: #000;
+    }
   }
+
   &.Snow {
-    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
-    background-color: #000;
+    background: linear-gradient(to top, rgba(230, 218, 218, 1), rgba(39, 64, 70, 1));
+
+    &.night {
+      background: linear-gradient(to top, rgba(230, 218, 218, .7), rgba(39, 64, 70, .7));
+      background-color: #000;
+    }
   }
-  &.Snow {
-    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
-    background-color: #000;
-  }
+
   &.Smoke {
-    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
-    background-color: #000;
+    background: linear-gradient(to top, rgba(65, 67, 69, 1), rgba(35, 37, 38, 1));
+
+    &.night {
+      background: linear-gradient(to top, rgba(65, 67, 69, .7), rgba(35, 37, 38, .7));
+      background-color: #000;
+    }
   }
+
   &.Haze {
-    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
-    background-color: #000;
+    background: linear-gradient(to top, rgba(255, 197, 0, 1), rgba(194, 21, 0, 1));
+
+    &.night {
+      background: linear-gradient(to top, rgba(255, 197, 0, .7), rgba(194, 21, 0, .7));
+      background-color: #000;
+    }
   }
+
   &.Dust {
-    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
-    background-color: #000;
+    background: linear-gradient(to top, rgba(178, 159, 148, 1), rgba(96, 56, 19, 1));
+
+    &.night {
+      background: linear-gradient(to top, rgba(178, 159, 148, .7), rgba(96, 56, 19, .7));
+      background-color: #000;
+    }
   }
+
   &.Fog {
-    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
-    background-color: #000;
+    background: linear-gradient(to top, rgba(203, 202, 165, 1), rgba(51, 77, 80, 1));
+
+    &.night {
+      background: linear-gradient(to top, rgba(203, 202, 165, .7), rgba(51, 77, 80, .7));
+      background-color: #000;
+    }
   }
+
   &.Sand {
-    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
-    background-color: #000;
+    background: linear-gradient(to top, rgba(255, 167, 81, 1), rgba(255, 226, 89, 1));
+
+    &.night {
+      background: linear-gradient(to top, rgba(255, 167, 81, .7), rgba(255, 226, 89, .7));
+      background-color: #000;
+    }
   }
-  &.Dust {
-    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
-    background-color: #000;
-  }
+
   &.Ash {
-    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
-    background-color: #000;
+    background: linear-gradient(to top, rgba(203, 202, 165, 1), rgba(51, 77, 80, 1));
+
+    &.night {
+      background: linear-gradient(to top, rgba(203, 202, 165, .7), rgba(51, 77, 80, .7));
+      background-color: #000;
+    }
   }
+
   &.Squall {
-    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
-    background-color: #000;
+    background: linear-gradient(to top, rgba(178, 159, 148, 1), rgba(96, 56, 19, 1));
+
+    &.night {
+      background: linear-gradient(to top, rgba(178, 159, 148, .7), rgba(96, 56, 19, .7));
+      background-color: #000;
+    }
   }
+
   &.Tornado {
-    background: linear-gradient(to top,  rgba(33,147,176,1), rgba(109,213,237,1));
-    background-color: #000;
+    background: linear-gradient(to top, rgba(58, 96, 115, 1), rgba(22, 34, 42, 1));
+
+    &.night {
+      background: linear-gradient(to top, rgba(58, 96, 115, .7), rgba(22, 34, 42, .7));
+      background-color: #000;
+    }
   }
 }
 
 .settings {
- position: absolute;
- top: 1rem;
- right: 1rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  & .settingsIcon {
+    cursor: pointer;
+  }
+  
 }
 
 .sideDrawer {
@@ -103,30 +169,46 @@
   z-index: 99;
   background: #fff;
   padding: 1rem 1rem 1rem 1rem;
-  box-shadow: -4px 4px 4px 4px rgba(0,0,0,0.1);
+  box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.1);
   background: #f6f6f6;
   min-width: 20rem;
 }
-.settingsIcon {
-  cursor: pointer;
+
+
+.appHeader {
+  display: block;
+
+  @include media-breakpoint-up(md) {
+
+  }
 }
 
 .appWeather {
   text-align: center;
 }
+
 .appFooter {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-end;
-  width: 100%;
   max-width: 20rem;
   min-height: 10rem;
 
   @include media-breakpoint-up(md) {
     flex-wrap: nowrap;
-  } 
+    max-width: none;
+    width: 100%;
+  }
 }
+
+@media (max-height: 667px) {
+  .appFooter {
+    min-height: none;
+    max-height: 200px;
+  }
+}
+
 
 // Typography
 .h1 {
@@ -139,13 +221,20 @@
   }
 }
 
+// Buttons
+.btn-findWeather {
+  margin-bottom: .5rem;
+}
+
 // display overrides
 .d-none {
   display: none !important;
 }
+
 .d-block {
   display: block !important;
 }
+
 .w-100 {
   width: 100% !important;
 }
