@@ -147,27 +147,13 @@ export const HomeController = () => {
     fetchWeather(lat, lon, updateSearchHistory);
   };
 
-  // Side drawer
-  const [sideDrawerIsActive, setSideDrawerIsActive] = useState<boolean>(false);
-  const toggleSideDrawer = () => {
-    setSideDrawerIsActive(!sideDrawerIsActive);
-  };
-  const [searchHistoryIsActive, setsearchHistoryIsActive] = useState<boolean>(false);
-  const togglesearchHistory = () => {
-    setsearchHistoryIsActive(!searchHistoryIsActive);
-  };
-
   return {
     currentCoord,
     currentCity,
     currentWeather,
     currentPermission,
-    sideDrawerIsActive,
-    searchHistoryIsActive,
     fn: {
       setNewCoord,
-      toggleSideDrawer,
-      togglesearchHistory,
       getCurrentPosition,
     },
   };

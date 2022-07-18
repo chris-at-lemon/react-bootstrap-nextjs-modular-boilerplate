@@ -19,13 +19,14 @@
   align-items: center;
   padding: 2rem 0 0 0;
 
-  background: linear-gradient(to top, rgba(97, 144, 232, 1), rgba(167, 191, 232, 1));
+  background: linear-gradient(to top, rgba(54, 55, 149, 1), rgba(0, 92, 151, 1));
 
   &.Clear {
-    background: linear-gradient(to top, rgba(109, 213, 237, 1), rgba(33, 147, 176, 1));
+    background: linear-gradient(to top, rgba(109, 213, 237, .8), rgba(33, 147, 176, .8));
+    background-color: #000;
 
     &.night {
-      background: linear-gradient(to top, rgba(109, 213, 237, .7), rgba(33, 147, 176, .7));
+      background: linear-gradient(to top, rgba(109, 213, 237, .6), rgba(33, 147, 176, .6));
       background-color: #000;
     }
   }
@@ -149,37 +150,55 @@
   }
 }
 
-.settings {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-
-  & .settingsIcon {
-    cursor: pointer;
-  }
-  
-}
-
-.sideDrawer {
-  position: absolute;
-  right: 0;
-  top: 1.5rem;
-  max-height: 90vh;
-  overflow-y: auto;
-  z-index: 99;
-  background: #fff;
-  padding: 1rem 1rem 1rem 1rem;
-  box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.1);
-  background: #f6f6f6;
-  min-width: 20rem;
-}
-
 
 .appHeader {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   @include media-breakpoint-up(md) {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 
+  & .brandContainer {
+    display: flex;
+    flex-basis: 33.33%;
+    justify-content: center;
+    font-size: .75rem;
+    text-align: center;
+
+    @include media-breakpoint-up(md) {
+      flex-basis: 33.33%;
+      justify-content: flex-start;
+      font-size: .75rem;
+    }
+
+    & .brand {
+      margin-bottom: 1rem;
+      @include media-breakpoint-up(md) {
+        margin: .125rem 0 0 1rem;
+      }
+    }
+
+    & .brandIcon {
+      font-size: 2rem;
+    }
+  }
+
+  & .searchContainer {
+    display: flex;
+    flex-basis: 33.33%;
+    justify-content: center;
+  }
+
+  & .settingsContainer {
+    display: flex;
+    flex-basis: 33.33%;
+    justify-content: flex-end;
+    font-size: 1rem;
   }
 }
 
@@ -211,15 +230,7 @@
 
 
 // Typography
-.h1 {
-  font-size: .75rem;
-  text-align: center;
-  margin-bottom: 1rem;
 
-  & .brandIcon {
-    font-size: 2rem;
-  }
-}
 
 // Buttons
 .btn-findWeather {
@@ -227,14 +238,6 @@
 }
 
 // display overrides
-.d-none {
-  display: none !important;
-}
-
-.d-block {
-  display: block !important;
-}
-
 .w-100 {
   width: 100% !important;
 }

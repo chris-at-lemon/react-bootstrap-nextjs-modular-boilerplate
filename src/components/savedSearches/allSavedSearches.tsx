@@ -12,7 +12,7 @@ const AllSavedSearches = ({ setCoord }: any) => {
 
   return (
     <>
-      <button onClick={fn.handleRemoveAll} className={`${styles["btn"]} ${styles["btn-danger"]} ${styles["btn-delete"]} ${styles["btn-sm"]} ${styles["d-block"]} ${styles["w-100"]}`}>
+      <button onClick={fn.handleRemoveAll} className={`${styles["btn"]} ${styles["btn-danger"]} ${styles["btn-delete"]} ${styles["btn-sm"]} ${styles["d-block"]} ${styles["w-100"]}`} aria-label="remove all items">
         Delete search history
       </button>
       {allSavedSearchesToDisplay &&

@@ -1,0 +1,56 @@
+// Core
+@import "../../styles/core/bootstrap/functions";
+@import "../../styles/core/brand/variables";
+
+// Mixins
+@import "../../styles/core/bootstrap/mixins";
+
+// Components
+@import '../../styles/core/bootstrap/buttons';
+
+.settings {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  @include media-breakpoint-up(md) {
+    position: relative;
+    top: 0;
+    right: 1rem;
+  }
+
+  & .settingsIcon {
+    cursor: pointer;
+  }
+}
+
+.sideDrawer {
+  position: absolute;
+  right: 0;
+  top: 1.5rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 99;
+  background: #fff;
+  padding: 1rem 1rem 1rem 1rem;
+  box-shadow: -4px 4px 4px 4px rgba(0, 0, 0, 0.1);
+  background: #f6f6f6;
+  min-width: 20rem;
+}
+
+// Buttons
+.btn {
+  border-radius: 0;
+}
+
+// Display
+.d-none {
+  display: none !important;
+}
+
+.d-block {
+  display: block !important;
+}
+.w-100 {
+  width: 100% !important;
+}
