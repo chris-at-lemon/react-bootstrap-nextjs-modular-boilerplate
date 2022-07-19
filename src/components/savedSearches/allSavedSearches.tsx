@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useSearchesController } from "../savedSearches/savedSearchesController";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRefresh, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faRefresh, faTimes, faArrowUpFromBracket } from "@fortawesome/free-solid-svg-icons";
 
 import styles from "../savedSearches/allSavedSearches.module.scss";
 
@@ -20,7 +20,9 @@ const AllSavedSearches = ({ setCoord }: any) => {
           return (
             <div className={`${styles["savedSearchWrapper"]}`} key={search.id}>
               <div onClick={() => setCoord(search.coord.lat, search.coord.lon, false)} className={`${styles["data"]}`}>
-                <div className={`${styles["city"]}`}>{search.name}</div>
+                <div className={`${styles["city"]}`}>
+                  {search.name} &nbsp; <FontAwesomeIcon icon={faArrowUpFromBracket} />
+                </div>
                 <div className={`${styles["searchDate"]}`}>{search.date}</div>
                 <div>{search.temperature?.toString().split(".")[0]}º</div>
               </div>

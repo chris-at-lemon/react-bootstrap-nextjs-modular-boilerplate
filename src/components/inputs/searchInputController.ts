@@ -1,3 +1,5 @@
+import { useRef, useEffect } from "react";
+
 import usePlacesAutocomplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 
@@ -32,7 +34,6 @@ export const useSearchInputController = (setCoord: ISetCoord) => {
   const handleSelect =
     ({ description }: any) =>
     () => {
-      console.log("description", description);
       // Second argument (false) to prevent additional API call
       setValue(description, false);
       clearSuggestions();
@@ -47,11 +48,20 @@ export const useSearchInputController = (setCoord: ISetCoord) => {
       });
     };
 
+  const searchInput: any = useRef(null);
+
+  useEffect(() => {
+    if (searchInput.current) {
+      searchInput.current.focus();
+    }
+  }, []);
+
   return {
     ready,
     value,
     status,
     data,
+    searchInput,
     fn: {
       ref,
       handleInput,

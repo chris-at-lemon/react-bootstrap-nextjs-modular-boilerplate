@@ -14,38 +14,30 @@ export const HomeController = () => {
     lat: 0,
     lon: 0,
   });
-  //console.log(currentCoord)
 
   // City name always a result of coordinates
   const [currentCity, setCurrentCity] = useState<ICity>({});
 
   // Global store of previous searches,source of truth for all search istory (current state and persisted state)
   const [savedSearches, setSavedSearches] = useRecoilState(searchHistory);
-  //console.log('savedSearches', savedSearches);
 
   // Weather always a result of coordinates
   const [currentWeather, setCurrentWeather] = useState<IWeatherObject>();
 
-  //console.log(currentWeather);
-
   // permissions and gheolocation
   const [currentPermission, setCurrentPermission] = useState<string>("prompt");
-  //console.log("currentPermission", currentPermission);
 
   // Check for permissions, if granted run geoLocation, if not offer alternative.
   useEffect(() => {
     navigator.permissions.query({ name: "geolocation" }).then(function (result) {
       if (result.state === "granted") {
-        //console.log("granted permission");
         getCurrentPosition();
         setCurrentPermission("granted");
       }
       if (result.state === "prompt") {
-        //console.log("prompt for permission");
         setCurrentPermission("prompt");
       }
       if (result.state === "denied") {
-        //console.log("permission denied");
         setCurrentPermission("denied");
       }
     });
@@ -72,19 +64,16 @@ export const HomeController = () => {
   }
   // Catch error / not really needed as permissions were sniffed above
   function onError() {
-    //console.log("not allowed");
     setCurrentPermission("denied");
   }
 
   // set new city
   const fetchCity = async (lat: number, lon: number) => {
     const newCityData: any = await getCity(lat, lon);
-    //console.log(newCityData);
 
     let newCity = { ...currentCity };
 
     if (newCityData.status === 200) {
-      //console.log(newCityData.data);
       newCity = {
         city: newCityData.data[0].name,
         countryCode: newCityData.data[0].country,
@@ -98,7 +87,6 @@ export const HomeController = () => {
   // set new weather
   const fetchWeather: IFetchWheater = async (lat, lon, updateSearchHistory) => {
     const weatherData: any = await getWeather(lat, lon);
-    //console.log(weatherData);
     // Use Google API for better accuracy in city names
     const cityData: any = await getCity(lat, lon);
     // Get date and time

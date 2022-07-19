@@ -16,7 +16,6 @@ import Settings from "../components/settings/settings";
 
 const Home: NextPage = () => {
   const { currentWeather, currentPermission, fn } = HomeController();
-  //console.log(currentWeather?.mainCondition);
 
   return (
     <Div100vh>

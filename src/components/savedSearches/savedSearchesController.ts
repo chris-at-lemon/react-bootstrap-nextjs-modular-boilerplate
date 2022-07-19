@@ -7,7 +7,6 @@ import { ISavedSearch } from "./savedSearchesInterface";
 
 export const useSearchesController = () => {
   const [savedSearches, setSavedSearches] = useRecoilState(searchHistory);
-  //console.log('savedSearches', savedSearches)
   const [allSavedSearchesToDisplay, setAllSavedSearchesToDisplay] = useState<ISavedSearch[]>([]);
   const [savedSearchesToDisplay, setSavedSearchesToDisplay] = useState<ISavedSearch[]>([]);
 
@@ -21,28 +20,32 @@ export const useSearchesController = () => {
     setAllSavedSearchesToDisplay(history);
   }, [savedSearches]);
 
-  //console.log('savedSearchesToDisplay', savedSearchesToDisplay)
-
   // Remove search history item
-  function handleRemove(id: number) {
+  const handleRemove = (id: number) => {
     let newList = savedSearches.filter((item: any) => item.id !== id);
-    console.log("newList", newList);
     setSavedSearches(newList);
-  }
+  };
 
   // Remove all search history
-  function handleRemoveAll() {
+  const handleRemoveAll = () => {
     let newList = [...savedSearches];
     newList.length = 0;
     setSavedSearches(newList);
-  }
+  };
+
+  const [showTooltip, setShowTooltip] = useState<string>("");
+  const handletooltip = (id: string) => {
+    setShowTooltip(id);
+  };
 
   return {
     savedSearchesToDisplay,
     allSavedSearchesToDisplay,
+    showTooltip,
     fn: {
       handleRemove,
       handleRemoveAll,
+      handletooltip,
     },
   };
 };
