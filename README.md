@@ -1,2 +1,3 @@
-# react-bootstrap-nextjs-modular-boilerplate
-Boilerplate for React/NextJS workflow with modularSCSS
+# Weatcher App Code Challenge
+
+Fetch current weather from anywhere
