@@ -31,7 +31,7 @@ const SavedSearches = ({ setCoord }: any) => {
               <div className={`${styles["icon"]}`}>
                 <Image src={`https://openweathermap.org/img/wn/${search.icon}.png`} alt={search.descr} width={50} height={50} />
               </div>
-              <button className={`${styles["btn"]} ${styles["btn-dismiss"]}`} onClick={() => fn.handleRemove(search.id)} aria-label="remove from list">
+              <button className={`${styles["btn"]} ${styles["btn-dismiss"]}`} onClick={() => fn.handleRemove(search.id)} aria-label="remove from list" data-test="remove from list">
                 <FontAwesomeIcon className={`${styles["closeIcon"]}`} icon={faTimes} />
               </button>
             </div>

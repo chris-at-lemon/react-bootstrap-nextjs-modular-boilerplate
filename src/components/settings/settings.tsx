@@ -14,7 +14,9 @@ const Settings = ({ setNewCoord }: any) => {
 
   return (
     <div className={`${styles["settings"]}`}>
-      <FontAwesomeIcon onClick={fn.toggleSideDrawer} className={`${styles["settingsIcon"]}`} icon={faCog} />
+      <button className={`${styles["btn-settings"]}`} data-test="settings-button">
+        <FontAwesomeIcon onClick={fn.toggleSideDrawer} className={`${styles["settingsIcon"]}`} icon={faCog} />
+      </button>
       <div className={`${styles["sideDrawer"]}  ${sideDrawerIsActive ? styles["d-block"] : styles["d-none"]} ${styles["slide-left"]}`}>
         <button onClick={fn.togglesearchHistory} className={`${styles["btn"]} ${styles["btn-primary"]} ${styles["btn-sm"]} ${styles["btn-viewHistory"]} ${styles["d-block"]} ${styles["w-100"]}`} aria-label="toggle history">
           {searchHistoryIsActive ? "Hide search history" : "View full search history"}
