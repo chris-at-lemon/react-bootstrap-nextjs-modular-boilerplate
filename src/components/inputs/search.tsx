@@ -4,7 +4,9 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useSearchInputController } from "./searchInputController";
 import styles from "../inputs/search.module.scss";
 
-const PlacesAutocomplete = ({ setCoord }: any) => {
+import { ISetCoord } from "../../globalInterfaces/pages/home";
+
+const PlacesAutocomplete = ({ setCoord }: ISetCoord) => {
   const { ready, value, status, data, searchInput, fn } = useSearchInputController(setCoord);
 
   return (
@@ -15,7 +17,7 @@ const PlacesAutocomplete = ({ setCoord }: any) => {
       </div>
       {status === "OK" && (
         <ul className={`${styles["suggestions"]}`}>
-          {data.map((suggestion: any) => {
+          {data.map((suggestion) => {
             return (
               <li key={suggestion.place_id}>
                 <button className={`${styles["searchWeather"]}`} onClick={fn.handleSelect(suggestion)} aria-label={`weather for ${suggestion.structured_formatting.main_text} ${suggestion.structured_formatting.secondary_text}`}>

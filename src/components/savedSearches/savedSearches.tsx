@@ -7,13 +7,15 @@ import { faRefresh, faTimes, faArrowUpFromBracket } from "@fortawesome/free-soli
 
 import styles from "../savedSearches/savedSearches.module.scss";
 
-const SavedSearches = ({ setCoord }: any) => {
+import { ISetCoord } from "../../globalInterfaces/pages/home";
+
+const SavedSearches = ({ setCoord }: ISetCoord) => {
   const { savedSearchesToDisplay, showTooltip, fn } = useSearchesController();
 
   return (
     <>
       {savedSearchesToDisplay &&
-        savedSearchesToDisplay.map((search: any, i: number) => {
+        savedSearchesToDisplay.map((search, i) => {
           return (
             <div className={`${styles["savedSearchWrapper"]}`} key={search.id}>
               <div onClick={() => setCoord(search.coord.lat, search.coord.lon, false)} className={`${styles["data"]}`}>

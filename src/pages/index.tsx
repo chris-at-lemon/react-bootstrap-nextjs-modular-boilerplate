@@ -33,7 +33,7 @@ const Home: NextPage = () => {
             <PlacesAutocomplete setCoord={fn.setNewCoord} />
           </div>
           <div className={`${styles["settingsContainer"]}`}>
-            <Settings setNewCoord={fn.setNewCoord} />
+            <Settings setCoord={fn.setNewCoord} />
           </div>
         </div>
         <div className={`${styles["appWeather"]}`}>

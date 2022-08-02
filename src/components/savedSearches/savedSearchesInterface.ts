@@ -5,7 +5,7 @@ export interface ISavedSearch {
   feelsLike: number;
   icon: string;
   mainCondition: string;
-  id: string;
+  id: number;
   coord: {
     lat: number;
     lon: number;

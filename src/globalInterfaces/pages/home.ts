@@ -1,5 +1,3 @@
-import { Interface } from "readline";
-
 export interface IWeatherObject {
   temperature?: number;
   name?: string;
@@ -9,7 +7,7 @@ export interface IWeatherObject {
   mainCondition?: string;
   id?: string;
   coord?: {};
-  date?: any;
+  date?: string;
 }
 
 export interface ICoords {
@@ -20,6 +18,10 @@ export interface ICoords {
 export interface ICity {
   city?: string;
   countryCode?: string;
+}
+
+export interface ISetCoord {
+  setCoord: (lat: number, lon: number, updateSearchHistory?: boolean) => void;
 }
 
 export type ISetNewCoord = (lat: number, lon: number, updateSearchHistory?: boolean) => void;

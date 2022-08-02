@@ -7,7 +7,9 @@ import { faRefresh, faTimes, faArrowUpFromBracket } from "@fortawesome/free-soli
 
 import styles from "../savedSearches/allSavedSearches.module.scss";
 
-const AllSavedSearches = ({ setCoord }: any) => {
+import { ISetCoord } from "../../globalInterfaces/pages/home";
+
+const AllSavedSearches = ({ setCoord }: ISetCoord) => {
   const { allSavedSearchesToDisplay, fn } = useSearchesController();
 
   return (
@@ -16,7 +18,7 @@ const AllSavedSearches = ({ setCoord }: any) => {
         Delete search history
       </button>
       {allSavedSearchesToDisplay &&
-        allSavedSearchesToDisplay.map((search: any, i: number) => {
+        allSavedSearchesToDisplay.map((search, i) => {
           return (
             <div className={`${styles["savedSearchWrapper"]}`} key={search.id}>
               <div onClick={() => setCoord(search.coord.lat, search.coord.lon, false)} className={`${styles["data"]}`}>

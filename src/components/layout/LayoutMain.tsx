@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ReactChild, ReactChildren } from "react";
 import Head from "next/head";
 
-import { Container, Row, Col } from "reactstrap";
+interface AuxProps {
+  children: ReactChild | ReactChild[] | ReactChildren | ReactChildren[];
+}
 
-const LayoutMain = ({ children }: any) => {
+const LayoutMain = ({ children }: AuxProps) => {
   return (
     <>
       <Head>

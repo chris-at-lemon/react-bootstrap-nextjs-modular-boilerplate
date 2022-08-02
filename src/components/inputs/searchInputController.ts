@@ -48,7 +48,7 @@ export const useSearchInputController = (setCoord: ISetCoord) => {
       });
     };
 
-  const searchInput: any = useRef(null);
+  const searchInput = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     if (searchInput.current) {

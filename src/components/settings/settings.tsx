@@ -9,7 +9,9 @@ import styles from "../settings/settings.module.scss";
 
 import { useSettingsController } from "./settingsController";
 
-const Settings = ({ setNewCoord }: any) => {
+import { ISetCoord } from "../../globalInterfaces/pages/home";
+
+const Settings = ({ setCoord }: ISetCoord) => {
   const { sideDrawerIsActive, searchHistoryIsActive, fn } = useSettingsController();
 
   return (
@@ -22,7 +24,7 @@ const Settings = ({ setNewCoord }: any) => {
           {searchHistoryIsActive ? "Hide search history" : "View full search history"}
         </button>
         <div className={`${styles["allSearches"]} ${searchHistoryIsActive ? styles["d-block"] : styles["d-none"]}`}>
-          <AllSavedSearches setCoord={setNewCoord} />
+          <AllSavedSearches setCoord={setCoord} />
         </div>
       </div>
     </div>
